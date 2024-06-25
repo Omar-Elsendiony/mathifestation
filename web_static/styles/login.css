@@ -1,0 +1,57 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    /* overflow: hidden; */
+    /* flex: flex-shrink; */
+}
+
+body div{
+    width: fit-content;
+    position: relative;
+}
+
+
+
+.logo_container{
+    flex: 50%;
+}
+
+div img{
+    position: absolute;
+    scale: 0.5;
+    /* bottom: 50px; */
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    div img {
+        width: 100%;
+    }
+}
+
+
+
+
+.content_signup{
+    margin: auto;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+}
