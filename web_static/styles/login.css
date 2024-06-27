@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'normalFont';
+    src: url('../fonts/Rubik-VariableFont_wght.ttf') format('truetype');
+}
+
+*{
+    font-family: 'normalFont', sans-serif;
+}
+
 html, body{
     height: 100%;
     max-width: 100%;
@@ -24,14 +33,14 @@ h2{
 }
 
 @media (min-width: 1025px) {
-    div div img{
+    /* div div img{
         overflow: hidden;
-    }
+    } */
     .content_signup, .logo_container{
         position: relative;
         display: inline-block;
         flex: 0 50%;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 }
 
@@ -51,6 +60,8 @@ div div img{
     /* margin: 50px; */
 
 }
+
+
 
 .body_container{
     font-family: "Ubuntu", sans-serif;
@@ -83,6 +94,15 @@ input{
     /* font-size: 1em; */
 }
 
+.content_signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin: 50px; */
+    height: fit-content;
+}
+
 label{
     font-size: 1em;
     font-weight: 500;
@@ -91,12 +111,5 @@ label{
 }
 
 
-.content_signup{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    /* margin: 50px; */
-}
 
 

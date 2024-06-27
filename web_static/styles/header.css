@@ -1,4 +1,14 @@
 /***************   HEADER STYLES   *******************/
+@font-face {
+    font-family: normalFont;
+    src: url(fonts/Rubik-VariableFont_wght.tff);
+}
+
+*{
+    font-family: 'normalFont', sans-serif;
+}
+
+
 .search{
     width: 50%;
 }
@@ -24,7 +34,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    /* box-shadow: 10 0px 4px 0px rgba(136, 31, 130, 0.1); */
     background-image: url(''); /* Ensure this path is correct */
     background-size: cover;
     background-position: center;
@@ -86,7 +96,7 @@ nav ul li a:hover {
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 10px;
     }
 }
 
@@ -98,5 +108,15 @@ nav ul li a:hover {
     nav ul li a {
         padding: 8px 12px;
         font-size: 14px;
+        margin: 10px;
     }
+}
+
+body{
+    position: relative;
+}
+
+footer{
+    /* position: absolute; */
+    bottom: 0;
 }
