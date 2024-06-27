@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles/login.css">
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/header.css">
+</head>
+
+<body>
+    <header class="header_container">
+        <a href="#" class="logo">
+            <img src="images/Mathifestation.png">
+            <!-- <h1>mathifestation</h1> -->
+        </a>
+        <div class="search">
+            <input type="text" placeholder="Search...">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#qa">Q&A</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="body_container">
         <div class="logo_container">
-            <img src="images/mathifestation_logo.png">
+            <img src="images/OIG3 (1).jpg">
         </div>
         <div class="content_signup">
-            <form action="/submit_form" method="post">
+            <form action="/submit_form" class="form_content" method="post">
+                <h2>Register</h2>
                 <div>
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
-        
+
                 <div>
-                    <label for="password">Password:</label>
+                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-        
+
                 <div>
-                    <label for="firstname">First Name:</label>
+                    <label for="firstname">First Name</label>
                     <input type="text" id="firstname" name="firstname" required>
                 </div>
-        
+
                 <div>
-                    <label for="birthday">Birthday:</label>
+                    <label for="birthday">Birthday</label>
                     <input type="date" id="birthday" name="birthday" required>
                 </div>
-        
+
                 <input type="submit" value="Register">
             </form>
-            </form>
         </div>
-    </body>
+    </div>
+    <footer>
+        <p>Mathifestation &copy; 2021</p>
+    </footer>   
+</body>
+
 </html>
