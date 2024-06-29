@@ -20,13 +20,11 @@ class Question(BaseModel, Base):
         user_id = Column(Integer, ForeignKey('users.id'))
         title = Column(String(128), nullable=False)
         body = Column(Text, nullable=False)
-        
         answer = relationship("Answer", backref="answers")
         # user = relationship("User", backref="answers")
         
         
     else:
-        question_id = ""
         user_id = ""
         title = ""
         body = ""

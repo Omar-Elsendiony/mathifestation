@@ -13,7 +13,7 @@ from models.state import State
 from models.user import User
 from models.question import Question
 from models.answer import Answer
-# from models.question import Question
+import re
 
 
 import shlex  # for splitting the line along spaces except in double quotes
@@ -38,6 +38,33 @@ class MATHSCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
 
+
+    def split_preserve_quotes(self, s):
+        pattern = r'(?:"[^"]*"|\'[^\']*\'|\S+)'
+        return re.findall(pattern, s)
+    
+    def split_manual(self, s):
+        s.strip()
+        canSplit = True # cansplit is a flag to indicate if we are inside a quoted string or not
+        i = 0
+        lastIndex = i
+        args = []
+        while i < len(s):
+            if s[i] == ' ' and canSplit:
+                args.append(s[lastIndex:i])
+                while i < len(s) and s[i] == ' ':
+                    i += 1
+                else:
+                    lastIndex = i
+            elif s[i] == '"' or s[i] == "'":
+                canSplit = not canSplit
+                i += 1
+            else:
+                i += 1
+        else:
+            args.append(s[lastIndex:i])
+        return args
+
     def _key_value_parser(self, args):
         """creates a dictionary from a list of strings"""
         new_dict = {}
@@ -46,7 +73,7 @@ class MATHSCommand(cmd.Cmd):
                 kvp = arg.split('=', 1)
                 key = kvp[0]
                 value = kvp[1]
-                if value[0] == value[-1] == '"':
+                if value[0] == value[-1] == '"' or value[0] == value[-1] == '\'':
                     value = shlex.split(value)[0].replace('_', ' ')
                 else:
                     try:
@@ -61,7 +88,7 @@ class MATHSCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Creates a new instance of a class"""
-        args = arg.split()
+        args = self.split_manual(arg)
         if len(args) == 0:
             print("** class name missing **")
             return False
@@ -165,5 +192,5 @@ class MATHSCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MATHSCommand().cmdloop()

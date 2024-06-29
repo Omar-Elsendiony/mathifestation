@@ -67,3 +67,16 @@ for name, obj in inspect.getmembers(console):
 
 my_console = console_obj(stdout=io.StringIO(), stdin=io.StringIO())
 my_console.use_rawinput = False
+
+
+"""
+ Exec command
+"""
+def exec_command(my_console, the_command, last_lines = 1):
+    my_console.stdout = io.StringIO()
+    real_stdout = sys.stdout
+    sys.stdout = my_console.stdout
+    my_console.onecmd(the_command)
+    sys.stdout = real_stdout
+    lines = my_console.stdout.getvalue().split("\n")
+    return "\n".join(lines[(-1*(last_lines+1)):-1])
