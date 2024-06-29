@@ -31,7 +31,7 @@
         }
 
         .introduction_container{
-            font-family: 'Rubik', sans-serif;
+            font-family: 'normalFont', sans-serif;
             background-color: #0B022D;
         }
 
@@ -40,7 +40,16 @@
             margin-top: 5%;
         }
 
+        h3{
+            color: #f318a2;
+        }
 
+        @media only screen and (min-width: 0px) and (max-width: 599px) {
+        .introduction_container {
+                flex-direction: column-reverse;
+                width: 100vw;
+            }
+        }
 
     </style>
 
@@ -67,14 +76,14 @@
         <div class="introduction_row row  d-flex align-content-center">
             <div class="col-md-6 introduction_text order-lg-1">
                 <h2>Are you ready to give your brain an exercise?</h2>
-                <p>Start with Mathifestation.</p>
+                <h3>Start with Mathifestation!</h3>
             </div>
             <div class="col-md-6 logo_container order-first center-block">
                 <img src="images/Picture5.svg ">
             </div>
         </div>
     </div>  
-    <div class="container-fluid p-0 m-0">
+    <!-- <div class="container-fluid p-0 m-0">
         <div class="row no-gutters p-0">
             <div class="col-md-6 order-2">
                 <h2>Element 1</h2>
@@ -82,10 +91,10 @@
             </div>
             <div class="col-md-6 order-1">
                 <h2>Element 2</h2>
-                <p>This is the second element in the container.</p>
+                <h3>This is the second element in the container.</h3>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="container mt-5">
         <div class="row">

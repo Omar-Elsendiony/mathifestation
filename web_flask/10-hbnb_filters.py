@@ -29,7 +29,7 @@ def hbnb_filter():
 
     amenities = storage.all(Amenity).values()
     amenities = sorted(amenities, key=lambda k: k.name)
-
+    print(amenities[0].name)
     return render_template('10-hbnb_filters.html',
                            states=st_ct,
                            amenities=amenities)
