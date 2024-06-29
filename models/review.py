@@ -15,7 +15,7 @@ class Review(BaseModel, Base):
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         body = Column(String(1024), nullable=False)
         rating = Column(Integer, CheckConstraint('rating >= 1 AND rating <= 5'), nullable=False)
-        
+
     else:
         place_id = ""
         user_id = ""

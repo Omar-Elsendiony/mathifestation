@@ -14,17 +14,23 @@ class User(BaseModel, Base):
     """Representation of a user """
     if models.storage_t == 'db':
         __tablename__ = 'users'
-        email = Column(String(128), nullable=False)
-        password = Column(String(128), nullable=False)
+        username = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
-        places = relationship("Place", backref="user")
-        reviews = relationship("Review", backref="user")
+        
+        email = Column(String(128), nullable=False)
+        password = Column(String(128), nullable=False)
+        
+        questions = relationship("Question", backref="user", cascade="all, delete")
+        answers = relationship("Answer", backref="user", cascade="all, delete")
+        reviews = relationship("Review", backref="user", cascade="all, delete")
+        
     else:
         email = ""
         password = ""
         first_name = ""
         last_name = ""
+        username = ""
 
     def __init__(self, *args, **kwargs):
         """initializes user"""

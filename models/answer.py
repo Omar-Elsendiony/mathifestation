@@ -5,8 +5,11 @@ from models.base_model import BaseModel, Base
 from models.city import City
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, ForeignKey, Integer, Text, TIMESTAMP
+from sqlalchemy import Column, String, ForeignKey, Integer, Text, Table
 from sqlalchemy.orm import relationship
+
+
+
 
 
 class Answer(BaseModel, Base):
@@ -17,8 +20,8 @@ class Answer(BaseModel, Base):
         user_id = Column(Integer, ForeignKey('users.id'))
         body = Column(Text, nullable=False)
         
-        question = relationship("Question", backref="answers")
-        user = relationship("User", backref="answers")
+        # question = relationship("Question", backref="answers")
+        # user = relationship("User", backref="answers")
         
         
     else:
