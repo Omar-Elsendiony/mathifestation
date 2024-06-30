@@ -27,17 +27,17 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
-        HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
-        HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
-        HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
-        HBNB_ENV = getenv('HBNB_ENV')
+        MATHS_MYSQL_USER = getenv('MATHS_MYSQL_USER')
+        MATHS_MYSQL_PWD = getenv('MATHS_MYSQL_PWD')
+        MATHS_MYSQL_HOST = getenv('MATHS_MYSQL_HOST')
+        MATHS_MYSQL_DB = getenv('MATHS_MYSQL_DB')
+        MATHS_ENV = getenv('MATHS_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(HBNB_MYSQL_USER,
-                                             HBNB_MYSQL_PWD,
-                                             HBNB_MYSQL_HOST,
-                                             HBNB_MYSQL_DB))
-        if HBNB_ENV == "test":
+                                      format(MATHS_MYSQL_USER,
+                                             MATHS_MYSQL_PWD,
+                                             MATHS_MYSQL_HOST,
+                                             MATHS_MYSQL_DB))
+        if MATHS_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
@@ -57,7 +57,11 @@ class DBStorage:
 
     def save(self):
         """commit all changes of the current database session"""
-        self.__session.commit()
+        try:
+            self.__session.commit()
+        except:
+            self.__session.rollback()
+            raise
 
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""

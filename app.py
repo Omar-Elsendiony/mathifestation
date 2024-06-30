@@ -8,7 +8,7 @@ from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
 
-app = Flask(__name__)
+app = Flask(__name__ , static_url_path='')
 
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # app.register_blueprint(app_views)
@@ -40,6 +40,7 @@ Swagger(app)
 
 
 @app.route('/', strict_slashes=False)
+@app.route('/index', strict_slashes=False)
 def index():
     """ Index
     ---
@@ -47,7 +48,7 @@ def index():
       200:
         description: Index
     """
-    return render_template('index.html')
+    return render_template('index_2.html')
 
 
 if __name__ == "__main__":

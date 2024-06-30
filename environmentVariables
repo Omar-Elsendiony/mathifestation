@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
 # Add environment variables
-export HBNB_MYSQL_USER=hbnb_dev
-export HBNB_MYSQL_PWD=hbnb_dev_pwd
-export HBNB_MYSQL_HOST=localhost
-export HBNB_MYSQL_DB=hbnb_dev_db
-export HBNB_TYPE_STORAGE=db
+export MATHS_MYSQL_USER=MATHS_dev
+export MATHS_MYSQL_PWD=MATHS_dev_pwd
+export MATHS_MYSQL_HOST=localhost
+export MATHS_MYSQL_DB=MATHS_dev_db
+export MATHS_TYPE_STORAGE=db
 
 
 export MATHS_MYSQL_USER=maths_dev
