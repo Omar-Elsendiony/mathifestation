@@ -22,17 +22,11 @@ h2{
     padding: 0;
 }
 
-.question_upper_container{
-    height: 100%;
-    font-family: 'Rubik', sans-serif;
-    background-color: #0B022D;
-}
 
-.question_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+.start_asking{
+    background-color: #0B022D;
+    height: 40%;
+    /* padding: 10%; */
 }
 
 
@@ -59,6 +53,23 @@ input[type="submit"]{
 
 
 .form_content{
-    background-color: #0B022D;
+    color: #0B022D;
+    font-size: 1.2rem;
+    background-color: white;
     width: 100%;
+    line-height: 1;
+    padding-bottom: 10%;
+}
+
+h3, p{
+    margin: 0;
+}
+
+p{
+    font-size: smaller;
+}
+
+button, i{
+    color:#0B022D;
+    background-color: aqua;
 }
