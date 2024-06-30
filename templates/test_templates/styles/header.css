@@ -1,7 +1,7 @@
 /***************   HEADER STYLES   *******************/
 @font-face {
     font-family: normalFont;
-    src: url("{{ url_for('static', filename='fonts/Rubik-VariableFont_wght.tff')}}");
+    src: url("../fonts/Rubik-VariableFont_wght.ttf") format("truetype");
 }
 
 *{
