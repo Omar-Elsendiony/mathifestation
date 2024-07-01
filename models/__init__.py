@@ -7,7 +7,7 @@ from os import getenv
 
 
 storage_t = getenv("MATHS_TYPE_STORAGE")
-
+print("The file storage type is: %s" % storage_t)
 if storage_t == "db":
     from models.engine.db_storage import DBStorage
     storage = DBStorage()

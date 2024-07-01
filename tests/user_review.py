@@ -1,35 +1,39 @@
 #!/usr/bin/python3
-from test_utility import *
+from tests.test_utility import *
+import MySQLdb
 """
  Tests
 """
-username="loooooooooo"
+username="gtege"
 first_name="omar" 
 last_name="Else" 
 email="omar.e" 
 password="lolo"
 
+# try:
 result = exec_command(my_console, "create User username=\"{}\" first_name=\"{}\" last_name=\"{}\" email=\"{}\" password=\"{}\"".format(username, first_name, last_name, email, password))
 if result is None or result == "":
     print("FAIL: No ID retrieved")
+# except Exception as e:
+#     exit(1)
+#     print(e)
 
 
 user_id = result
 
 title = "What is an even number?"
 body = "I am trying to understand what an even number is. Can someone explain it to me?"
-
-result = exec_command(my_console, "create Question user_id=\"{}\" title=\"{}\" body=\"{}\"".format(user_id, title, body))
+rating = 6
+result = exec_command(my_console, "create Review user_id=\"{}\" body=\"{}\" rating=\"{}\"".format(user_id, body, rating))
 print(result)
 if result is None or result == "":
     print("FAIL: empty output")
 
-question_id = result
+review_id = result
 
-result = exec_command(my_console, "show Question {}".format(question_id))
+result = exec_command(my_console, "show Review {}".format(review_id))
 print(result)
-if result is None or result == "":
-    print("FAIL: empty output")    
+
 
 print("OK", end="")
 

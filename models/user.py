@@ -21,9 +21,9 @@ class User(BaseModel, Base):
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         
-        questions = relationship("Question", backref="user", cascade="all, delete")
-        answers = relationship("Answer", backref="user", cascade="all, delete")
-        reviews = relationship("Review", backref="user", cascade="all, delete")
+        users_questions = relationship("Question", backref="user_questions", cascade="all, delete")
+        users_answers = relationship("Answer", backref="user_answers", cascade="all, delete")
+        users_reviews = relationship("Review", backref="user_reviews", cascade="all, delete")
         
     else:
         email = ""

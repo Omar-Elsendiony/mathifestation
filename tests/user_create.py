@@ -16,7 +16,7 @@ def exec_command(my_console, the_command, last_lines = 1):
 """
  Tests
 """
-username="loooooooooo" 
+username="hthhht" 
 first_name="omar" 
 last_name="Else" 
 email="omar.e" 

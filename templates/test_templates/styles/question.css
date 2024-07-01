@@ -6,12 +6,12 @@ h1{
     padding: 0;
 }
 
-html, body{
+/* html, body{
     height: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
-}
+} */
 
 
 h2{
@@ -69,7 +69,10 @@ p{
     font-size: smaller;
 }
 
-button, i{
-    color:#0B022D;
-    background-color: aqua;
+.blackWhite{
+    color: black !important;
+    background-color: white;
+    border-color: #0B022D;
+    box-shadow: none;
 }
+

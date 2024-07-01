@@ -2,7 +2,6 @@
 """ holds class State"""
 import models
 from models.base_model import BaseModel, Base
-from models.city import City
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey, Integer, Text, Table
@@ -16,12 +15,12 @@ class Question(BaseModel, Base):
     """Representation of state """
     if models.storage_t == "db":
         __tablename__ = 'questions'
-        # answer_id = Column(Integer, ForeignKey('answers.id'))
-        user_id = Column(Integer, ForeignKey('users.id'))
         title = Column(String(128), nullable=False)
         body = Column(Text, nullable=False)
-        answer = relationship("Answer", backref="answers")
-        # user = relationship("User", backref="answers")
+        user_id = Column(String(60), ForeignKey('users.id'))
+        
+        # questions_answers = relationship("Answer", backref="questions_answers", cascade="all, delete")
+        # user_questions = relationship("User", backref="users_questions")
         
         
     else:
@@ -30,7 +29,7 @@ class Question(BaseModel, Base):
         body = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes state"""
+        """initializes question"""
         super().__init__(*args, **kwargs)
 
     # if models.storage_t != "db":

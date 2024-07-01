@@ -11,14 +11,14 @@ class Review(BaseModel, Base):
     """Representation of Review """
     if models.storage_t == 'db':
         __tablename__ = 'reviews'
-        place_id = Column(String(60), ForeignKey('places.id'), nullable=False)
+        # place_id = Column(String(60), ForeignKey('places.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         body = Column(String(1024), nullable=False)
         rating = Column(Integer, CheckConstraint('rating >= 1 AND rating <= 5'), nullable=False)
 
     else:
-        place_id = ""
-        user_id = ""
+        # place_id = ""
+        # user_id = ""
         body = ""
         rating = ""
 
