@@ -21,7 +21,7 @@
 
 <body>
     <header class="header_container">
-        <a href="#" class="logo">
+        <a href="/" class="logo">
             <img src="images/logo_rubik_less.svg">
         </a>
         <div class="search">
@@ -29,15 +29,19 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#login">Login</a></li>
-                <li><a href="#qa">Q&A</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signUp">Sign Up</a></li>
             </ul>
         </nav>
     </header>
 
-    {% block y %}{% endblock %}
+    {% block body_block %}{% endblock %}
 
 </body>
+
+<footer>
+    <p>Created by <a href="https://www.linkedin.com/in/alex-otieno-7b2b3b1b4/">Alex Otieno</a></p>
+</footer>
 
 </html>

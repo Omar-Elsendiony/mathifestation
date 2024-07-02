@@ -15,6 +15,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
+
 @app.teardown_appcontext
 def close_db(error):
     """ Close Storage """
@@ -32,7 +33,7 @@ def not_found(error):
     return make_response(jsonify({'error': "Not found"}), 404)
 
 app.config['SWAGGER'] = {
-    'title': 'AirBnB clone Restful API',
+    'title': 'Mathifestation API',
     'uiversion': 3
 }
 
@@ -48,7 +49,40 @@ def index():
       200:
         description: Index
     """
-    return render_template('index_2.html')
+    return render_template('index.html')
+
+
+@app.route('/ask_question', strict_slashes=False)
+def ask_question():
+    """ Question
+    ---
+    responses:
+      200:
+        description: Question
+    """
+    return render_template('ask_question.html')
+
+
+# @app.route('/question', strict_slashes=False)
+# def ask_question():
+#     """ Question
+#     ---
+#     responses:
+#       200:
+#         description: Question
+#     """
+#     return render_template('ask_question.html')
+
+
+@app.route('/signUp', strict_slashes=False)
+def signUp():
+    return render_template('signUp.html')
+
+
+@app.route('/login', strict_slashes=False)
+def login():
+    return render_template('login.html')
+
 
 
 if __name__ == "__main__":

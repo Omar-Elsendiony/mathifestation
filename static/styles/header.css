@@ -1,11 +1,24 @@
 /***************   HEADER STYLES   *******************/
 @font-face {
     font-family: normalFont;
-    src: url(fonts/Rubik-VariableFont_wght.tff);
+    src: url("../fonts/Rubik-VariableFont_wght.ttf") format("truetype");
 }
 
 *{
     font-family: 'normalFont', sans-serif;
+}
+
+
+html, body{
+    height: fit-content;
+    min-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    position: relative;
 }
 
 /* Responsive Styles */
@@ -43,26 +56,6 @@
     width: 50%;
 }
 
-/* a{
-    text-decoration: none;
-    color: #0b2128;
-}
-
-
-
-li{
-    list-style-type: none; 
-    text-decoration: none !important;
-    list-style: none;
-} */
-
-/* .logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-} */
 
 
 header {
@@ -127,17 +120,6 @@ nav ul li a:hover {
 
 }
 
-
-
-body{
-    position: relative;
-}
-
-footer{
-    /* position: absolute; */
-    bottom: 0;
-}
-
 .header_container{
     display: flex;
     justify-content: space-between;
@@ -147,5 +129,16 @@ footer{
     background-position: center;
     position: relative;
     border-bottom: solid #f318a2;
+}
 
+
+footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* background-color: red; */
+    border-top: solid #f318a2;
+    color: white;
+    text-align: center;
 }

@@ -11,12 +11,7 @@
     font-family: 'normalFont', sans-serif;
 }
 
-html, body{
-    height: fit-content;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-}
+
 
 h2{
     margin-bottom: 5%;
@@ -59,7 +54,7 @@ h2{
 
 
 .form_content{
-    margin-top: 2%;
+    margin: 10% 0;
     background-color: aliceblue;
     width: 70%;
     padding: 5%;

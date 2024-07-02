@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block header_block %}
+
+<!-- Styles -->
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/question.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/rich_text_editor.css')}}">
+<!-- End Styles -->
+
+
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='scripts/jQuery.js')}} "></script>
+<script src="{{ url_for('static', filename='scripts/rich_text_editor.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/questions.js')}}"></script>
+<!-- End Scripts  -->
+
+
+<style>
+    .row_container {
+        padding: 5% 0%;
+    }
+
+    .row_question {
+        margin: 3% 0%;
+        /* text-align: center; */
+    }
+
+    .column_question {
+        background-color: lightgray;
+        border: 2px solid grey;
+        border-radius: 10px;
+        padding: 2%;
+    }
+
+    h4 {
+        text-align: center;
+        width: 7rem;
+        height: 7rem;
+        font-size: 5rem;
+        margin: 5%;
+        background-color: hotpink;
+
+        box-shadow: 0 0 100px #f318a2;
+        /* padding: ; */
+        border: 4px solid white;
+        border-radius: 50%;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        background-color: #0B022D;
+        text-align: center;
+    }
+
+    #number-one,
+    #number-two,
+    #number-three {
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container-fluid start_asking">
+    <div class="row d-flex align-items-center" style="height: 100%; width: 100%;">
+        <div class="col-md-6 order-lg-1 order-2 ">
+            <h1>Math isn't Mathing</h1>
+            <h2> Ask Questions! </h2>
+        </div>
+        <div class="col-md-6 order-lg-2  order-1" style="font-size: 5rem;">
+            <h1>&#63</h1> <!-- This is the question mark -->
+        </div>
+    </div>
+</div>
+
+<form action="/submit_form" class="form_content" method="post">
+    <div class="container">
+        <div class="row row_question d-flex align-items-center ">
+            <div class="col-md-8 column_question  order-lg-1 order-2">
+                <div>
+                    <h3>Title</h3>
+                    <p>Be specific and imagine you’re asking a question to another person.</p>
+                    <input type="text" id="title" name="title" placeholder="title" required>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center order-lg-2  order-1">
+                <div>
+                    <h4 id="number-one" class="blackWhite Colorful">1</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row_question d-flex align-items-center">
+            <div class="col-md-8 column_question  order-lg-1 order-2">
+                <div>
+                    <h3>Question</h3>
+                    <p>Introduce the problem and expand on what you put in the title. Minimum 20 characters.</p>
+
+                    <div class="main-content">
+
+                        <!--  Rich text Editor -->
+                        <div class="text-editor-header">
+                            <button type="button" class="btn" data-element="bold">
+                                <i class="fa fa-bold"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="italic">
+                                <i class="fa fa-italic"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="underline">
+                                <i class="fa fa-underline"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="insertUnorderedList">
+                                <i class="fa fa-list-ul"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="insertOrderedList">
+                                <i class="fa fa-list-ol"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="createLink">
+                                <i class="fa fa-link"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="justifyLeft">
+                                <i class="fa fa-align-left"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="justifyCenter">
+                                <i class="fa fa-align-center"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="justifyRight">
+                                <i class="fa fa-align-right"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="justifyFull">
+                                <i class="fa fa-align-justify"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-element="insertImage">
+                                <i class="fa fa-image"></i>
+                            </button>
+                        </div>
+
+                        <div class="content" contenteditable="true" required></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-4 d-flex justify-content-center order-lg-2  order-1">
+                <div>
+                    <h4 id="number-two" class="blackWhite Colorful" >2</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row_question d-flex align-items-center">
+            <div class="col-md-8 column_question order-lg-1 order-2">
+                <div>
+                    <h3>Submit</h3>
+                    <p>Be sure that is your intended question.</p>
+                    <input type="submit" id="submit" placeholder="submit" required>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center order-lg-2  order-1">
+                <div>
+                    <h4 id="number-three" class="blackWhite Colorful">3</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="https://use.fontawesome.com/a31a3f8384.js"></script>
+
+{% endblock %}

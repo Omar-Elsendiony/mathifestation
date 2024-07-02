@@ -13,3 +13,5 @@ export MATHS_MYSQL_PWD=maths_dev_pwd
 export MATHS_MYSQL_HOST=localhost
 export MATHS_MYSQL_DB=maths_dev_db
 export MATHS_TYPE_STORAGE=db
+export MATHS_API_HOST=localhost
+export MATHS_API_PORT=5000

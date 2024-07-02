@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/header.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/header.css">
+
+    <style>
+        .sign_up_column{
+            /* font-style: "normalFont"; */
+            padding: 3%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            /* color: #F7FFF7; */
+        }
+
+        .sign_up_container{
+            height: 100%;
+            font-family: 'Rubik', sans-serif;
+            background-color: #0B022D;
+        }
+
+        .logo_container{
+            height: 100%;
+            margin-top: 10%;
+            /* margin-bottom: 15%; */
+        }
+        .nopadding {
+        padding: 0 !important;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <header class="header_container">
+        <a href="#" class="logo">
+            <img src="images/logo_rubik_less.svg">
+        </a>
+        <div class="search">
+            <input type="text" placeholder="Search...">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#qa">Q&A</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="sign_up_container container-fluid">
+        <div class="introduction_row row">
+            <div class="col-md-6 logo_container">
+                <img src="images/image-removebg.png ">
+            </div>
+            <div class="col-md-6 sign_up_column nopadding">
+                <form action="/submit_form" class="form_content" method="post">
+                    <img src="images/logo_rubic.svg" alt="logo">
+                    <h2>Sign in to your account</h2>
+                    <div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+        
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+        
+                        <input type="submit" value="Login">
+                    </div>
+                    <a>Forgot password?</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+
+</body>
+
+<footer>
+    <p>Created by <a href="https://www.linkedin.com/in/alex-otieno-7b2b3b1b4/">Alex Otieno</a></p>
+</footer>
+</html>

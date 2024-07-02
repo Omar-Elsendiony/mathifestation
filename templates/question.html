@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Question</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-
+{% block header_block %}
     <!-- <link rel="stylesheet" href="styles/question.css"> -->
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/rich_text_editor.css">
@@ -82,26 +68,9 @@
             color: #f318a2;
         }
     </style>
+{% endblock %}
 
-</head>
-
-<body>
-    <header class="header_container">
-        <a href="#" class="logo">
-            <img src="images/logo_rubik_less.svg">
-        </a>
-        <div class="search">
-            <input type="text" placeholder="Search...">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#qa">Q&A</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#login">Login</a></li>
-            </ul>
-        </nav>
-    </header>
-
+{% block body_block %}
     <div class="container question_metadata">
         <div class="row d-flex align-items-center" style="height: 100%; width: 100%;">
             <div class="col-md-12 order-lg-1 order-2 ">
@@ -129,8 +98,7 @@
         </div>
     </div>
 
-    <hr>
-    </hr> <!--  horizontal line that segments -->
+    <hr> <!--  horizontal line that segments -->
 
     <div class="container">
         <div>
@@ -222,10 +190,4 @@
 
     <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
 
-</body>
-
-<footer>
-    <p>Created by <a href="https://www.linkedin.com/in/alex-otieno-7b2b3b1b4/">Alex Otieno</a></p>
-</footer>
-
-</html>
+{% endblock %}

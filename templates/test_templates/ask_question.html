@@ -15,12 +15,13 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    <!-- <link rel="stylesheet" href="styles/question.css"> -->
+    <link rel="stylesheet" href="styles/question.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/rich_text_editor.css">
 
     <script src="scripts/jQuery.js"></script>
     <script src="scripts/rich_text_editor.js"></script>
+    <script src="scripts/questions.js"></script>
 
     <style>
         .row_container {
@@ -39,48 +40,31 @@
             padding: 2%;
         }
 
+        h4 {
+            text-align: center;
+            width: 7rem;
+            height: 7rem;
+            font-size: 5rem;
+            margin: 5%;
+            background-color: hotpink;
 
-        input[type="button"] {
-            width: 10%;
+            box-shadow: 0 0 100px #f318a2;
+            /* padding: ; */
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        input[type="submit"]
+        {
+            width: 100%;
             background-color: #0B022D;
             text-align: center;
-            color: white;
-            border: none;
-
         }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #f318a2;
-            border-radius: 5px;
-            /* background-color: #f318a2; */
-            /* font-size: 1em; */
-        }
-
-        #number-one,
-        #number-two,
-        #number-three {
+        #number-one, #number-two, #number-three{
             color: white;
         }
 
-        .column_question div a {
-            color: blue !important;
-            cursor: pointer;
-        }
-
-        .container {
-            margin: 5% 5%;
-        }
-
-        hr {
-            border: 2px solid #f318a2;
-        }
-
-        h4 {
-            color: #f318a2;
-        }
     </style>
 
 </head>
@@ -102,64 +86,37 @@
         </nav>
     </header>
 
-    <div class="container question_metadata">
+    <div class="container-fluid start_asking">
         <div class="row d-flex align-items-center" style="height: 100%; width: 100%;">
-            <div class="col-md-12 order-lg-1 order-2 ">
-                <!-- <h1>Math isn't Mathing</h1> -->
-                <h2> Is it possible to use the same ssh private/public key pair on 2 machines to access a git
-                    repository?</h2>
-                <p>I've recently setup an inhouse git repository server and have it up and running with gitosis
-                    installed as the management tool. Read only access is available via the git:// protocol and write
-                    access is available via gitosis using ssh public keys.
-
-                    I have a developer that has been granted access to his projects with a public key that was generated
-                    on his desktop workstation.
-
-                    He is now wanting to access that repository from his laptop using the same ssh key pair. He's copied
-                    has .ssh folder in it's entirety to his laptop and has tried to clone from the repository without
-                    success.
-
-                    Is this a valid thing to try?
-
-                    Does a ssh key pair need to be generated per machine? This seems weird as it would effectively
-                    require a per machine username to be added to the gitosis configuration.
-
-                    Any help would be appreciated.</p>
+            <div class="col-md-6 order-lg-1 order-2 ">
+                <h1>Math isn't Mathing</h1>
+                <h2> Ask Questions! </h2>
+            </div>
+            <div class="col-md-6 order-lg-2  order-1" style="font-size: 5rem;">
+                <h1>&#63</h1> <!-- This is the question mark -->
             </div>
         </div>
     </div>
 
-    <hr>
-    </hr> <!--  horizontal line that segments -->
-
-    <div class="container">
-        <div>
-            <h3>Answers</h3>
-        </div>
-        <div class="row row_question d-flex align-items-center">
-            <div class="col-md-12 column_question">
-                <div>
-                    <a>@Ahmed Ramy</a>
-                    <p>Be specific and imagine you’re asking a question to another person.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row row_question d-flex align-items-center">
-            <div class="col-md-12 column_question">
-                <div>
-                    <a>@Ahmed Ramy</a>
-                    <p>Be specific and imagine you’re asking a question to another person.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row row_question d-flex align-items-center">
-            <form action="/submit_form" class="form_content" method="post">
-
+    <form action="/submit_form" class="form_content" method="post">
+        <div class="container">
+            <div class="row row_question d-flex align-items-center">
                 <div class="col-md-8 column_question">
                     <div>
-                        <h3>Your Answer</h3>
+                        <h3>Title</h3>
+                        <p>Be specific and imagine you’re asking a question to another person.</p>
+                        <input type="text" id="title" name="title" placeholder="title" required>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <h4 id="number-one" class="blackWhite Colorful">1</h4>
+                </div>
+            </div>
+
+            <div class="row row_question d-flex align-items-center">
+                <div class="col-md-8 column_question">
+                    <div>
+                        <h3>Question</h3>
                         <p>Introduce the problem and expand on what you put in the title. Minimum 20 characters.</p>
 
                         <div class="main-content">
@@ -213,19 +170,37 @@
 
                             <div class="content" contenteditable="true" required></div>
                         </div>
+
                     </div>
-                    <input type="button" value="Post"></div>
+
                 </div>
-            </form>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div>
+                        <h4 id="number-two" class="blackWhite Colorful">2</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row_question d-flex align-items-center">
+                <div class="col-md-8 column_question">
+                    <div>
+                        <h3>Submit</h3>
+                        <p>Be sure that is your intended question.</p>
+                        <input type="submit" id="submit" placeholder="submit" required>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <h4 id="number-three" class="blackWhite Colorful">3</h4>
+                </div>
+            </div>
         </div>
-    </div>
-
+    </form>
+    
     <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
-
+    
 </body>
 
 <footer>
     <p>Created by <a href="https://www.linkedin.com/in/alex-otieno-7b2b3b1b4/">Alex Otieno</a></p>
 </footer>
-
 </html>
