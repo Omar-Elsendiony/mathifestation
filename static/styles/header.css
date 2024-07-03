@@ -36,6 +36,10 @@ html{
     nav ul li {
         margin: 10px;
     }
+
+    .username{
+        padding-top: 5%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -53,7 +57,7 @@ html{
 
 
 .search{
-    width: 50%;
+    width: 45%;
 }
 
 
@@ -72,6 +76,16 @@ header {
     position: relative;
     border-bottom: solid #f318a2;
 }
+
+.header_container{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: solid #f318a2;
+}
+
 
 
 .logo h1 {
@@ -120,16 +134,6 @@ nav ul li a:hover {
 
 }
 
-.header_container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border-bottom: solid #f318a2;
-}
 
 
 footer{
@@ -142,3 +146,26 @@ footer{
     color: white;
     text-align: center;
 }
+
+
+
+
+.username{
+    display: flex;
+    width: auto;
+    /* max-width: 10%; */
+    /* min-width: 5%; */
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #0B022D;
+    margin: 0;
+}
+
+.username:hover{
+    cursor: pointer;
+}
+
+
+.user > div{
+    display: inline;}

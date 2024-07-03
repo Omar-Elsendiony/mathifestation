@@ -105,3 +105,11 @@ class DBStorage:
             count = len(models.storage.all(cls).values())
 
         return count
+
+
+    def get_attribute(self, cls, attribute, value):
+        var = cls.id
+        result = self.__session.query(cls).filter(var == value).all()
+        print(result)
+        getattr
+        return result

@@ -28,12 +28,25 @@
             <input type="text" placeholder="Search...">
         </div>
         <nav>
+            {% if user==None %}
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signUp">Sign Up</a></li>
+                </ul>
+                <div>
+
+                </div>
+            {% else %}
             <ul>
                 <li><a href="/about">About</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signUp">Sign Up</a></li>
             </ul>
+            {% endif %}
         </nav>
+
+        <div class="username">
+            <h5>12345678</h5>
+        </div>
     </header>
 
     {% block body_block %}{% endblock %}
