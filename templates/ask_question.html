@@ -11,7 +11,7 @@
 <!-- Scripts -->
 <script src="{{ url_for('static', filename='scripts/jQuery.js')}} "></script>
 <script src="{{ url_for('static', filename='scripts/rich_text_editor.js')}}"></script>
-<script src="{{ url_for('static', filename='scripts/questions.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/ask_question.js')}}"></script>
 <!-- End Scripts  -->
 
 
@@ -74,7 +74,7 @@
     </div>
 </div>
 
-<form action="/submit_form" class="form_content" method="post">
+<form action="/ask_question" class="form_content" method="post">
     <div class="container">
         <div class="row row_question d-flex align-items-center ">
             <div class="col-md-8 column_question  order-lg-1 order-2">
@@ -146,7 +146,8 @@
                             </button>
                         </div>
 
-                        <div class="content" contenteditable="true" required></div>
+                        <div class="content" id="content" contenteditable="true"></div>
+                        <input type="text" id="question" name="question" required>
                     </div>
 
                 </div>
