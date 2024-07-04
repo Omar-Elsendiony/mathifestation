@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block header_block %}
-<link rel="stylesheet" href="styles/login.css">
+<link rel="stylesheet" href="styles/signUp.css">
 <link rel="stylesheet" href="styles/header.css">
 
 
@@ -53,6 +53,7 @@
                     <div>
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" required>
+                        <p class="username_taken">Username is already taken<p>
                     </div>
 
                     <div>
@@ -75,7 +76,7 @@
                         <input type="text" id="lastname" name="lastname" required>
                     </div>
 
-                    <input type="submit" value="Register">
+                    <input type="submit" id="submit" value="Register">
 
                 </div>
             </form>

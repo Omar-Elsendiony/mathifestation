@@ -115,13 +115,13 @@ class DBStorage:
             if (attr_index == 0):
                 var = eval(cls + "." + attr)
                 result = self.__session.query(theClass).filter(var == values[attr_index])
-                print(result)
+                # print(result)
             else:
                 var = eval(cls + "." + attr)
                 result = result.filter(var == values[attr_index])
-                print(result)             
+                # print(result)             
         result = result.all()
-        print(result)
+        # print(result)
         return result
 
 

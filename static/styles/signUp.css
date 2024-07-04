@@ -1,0 +1,108 @@
+*{
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'normalFont';
+    src: url('../fonts/Rubik-VariableFont_wght.ttf') format('truetype');
+}
+
+*{
+    font-family: 'normalFont', sans-serif;
+}
+
+
+
+h2{
+    margin-bottom: 5%;
+}
+
+@media (max-width: 1024px) {
+    div img {
+        width: 100%;
+    }
+    .content_signup, .logo_container{
+        flex: 0 100%;
+        /* height: max-content; */
+    }
+}
+
+@media (min-width: 1025px) {
+    /* div div img{
+        overflow: hidden;
+    } */
+    .content_signup, .logo_container{
+        position: relative;
+        display: inline-block;
+        flex: 0 50%;
+        /* overflow: hidden; */
+    }
+}
+
+
+
+.logo_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin: 50px; */
+}
+
+
+
+
+
+.form_content{
+    margin: 10% 0;
+    background-color: aliceblue;
+    width: 70%;
+    padding: 5%;
+    border: solid 1px hsl(0, 0%, 80%);
+    border-radius: 3%;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f318a2;
+    border-radius: 5px;
+    /* background-color: #f318a2; */
+    /* font-size: 1em; */
+}
+
+
+input[type="submit"]{
+    width: 20%;
+    background-color: #f318a2;
+    color: white;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.content_signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin: 50px; */
+    height: fit-content;
+}
+
+label{
+    font-size: 1em;
+    font-weight: 500;
+    color: #333;
+    width: 100%;
+}
+
+
+.username_taken{
+    color: red;
+    display: none;
+    border-width: 2px;
+}
+

@@ -66,7 +66,7 @@ def index():
       200:
         description: Index
     """
-    print(session.get("username"))
+    # print(session.get("username"))
     return render_template('index.html', user=session.get("username"))
 
 
@@ -110,9 +110,11 @@ def login():
     return render_template('login.html', error=None)
 
 
+
 @app.route('/checkUserNameExists', strict_slashes=False)
 def check_username():
-    res = storage.get_attribute("User", ["username"], [request.form.get("username")])
+    print(request.values.get('username'))
+    res = storage.get_attribute("User", ["username"], [request.values.get('username')])
     if (len(res) > 0):
         return jsonify({"exists": True})
     return jsonify({"exists": False})
@@ -138,9 +140,10 @@ def ask_question():
         question = request.form.get("question")
         print(title)
         print(question)
+        if (session.get("user_id") is None):
+            return render_template('ask_question.html', error="You need to be logged in to ask a question")
         newQuestion = Question(title=title, body=question, user_id=session.get("user_id"))
         if (question == ""):
-            print("kii")
             return render_template('ask_question.html', error="Question cannot be empty", user=session.get("username"))
         storage.new(newQuestion)
         storage.save()

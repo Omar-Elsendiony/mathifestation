@@ -35,11 +35,10 @@ setTimeout(() => {
         console.log(content2);
         console.log(content);
         // question.setAttribute('value', content);
-        question.innerHTML = content;
+        question.value = content;
 
-        res = $('.form_content').submit();
-        // console.log(res);
-        return false;
+        $('.form_content').submit();
+        // return false;
     });
 
 }, 50);
