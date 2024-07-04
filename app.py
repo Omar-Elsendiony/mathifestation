@@ -107,7 +107,7 @@ def login():
         session["username"] = userRegistered.username
         # redirect to the main page
         return redirect("/")
-    return render_template('login.html', error=None)
+    return render_template('login.html', error=None, user=session.get("username"))
 
 
 
