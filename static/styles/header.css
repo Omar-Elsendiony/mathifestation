@@ -141,9 +141,9 @@ footer{
     left: 0;
     bottom: 0;
     width: 100%;
-    /* background-color: red; */
+    background-color: white;
     border-top: solid #f318a2;
-    color: white;
+    color: black;
     text-align: center;
 }
 

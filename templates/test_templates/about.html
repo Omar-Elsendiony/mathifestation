@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/header.css">
+
+    <script src="scripts/jQuery.js"></script>
+    <script src="scripts/about.js"></script> 
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+
+    
+    <style>
+        .row_add_on {
+            margin: 5% 0%;
+            /* height:20%   */
+        }
+
+        .introduction_text {
+            padding: 5%;
+            text-align: center;
+            color: #F7FFF7;
+        }
+
+        .container_add_on {
+            font-family: 'normalFont', sans-serif;
+            background-color: #0B022D;
+            height: 100%;
+        }
+
+        .logo_container {
+            height: 100%;
+        }
+
+        h3 {
+            color: #f318a2;
+        }
+
+        /* html,
+        body {
+            height: 100% !important;
+        } */
+
+
+        @media only screen and (min-width: 0px) and (max-width: 599px) {
+            .container_add_on {
+                flex-direction: column-reverse;
+                width: 100vw;
+            }
+            .goal h1{
+                font-size: 2rem;
+            }
+        }
+
+        .goal{
+            text-align: center;
+            color: #F7FFF7;
+            padding: 0 15%;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <header class="header_container">
+        <a href="#" class="logo">
+            <img src="images/logo_rubik_less.svg">
+        </a>
+        <div class="search">
+            <input type="text" placeholder="Search...">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#qa">Q&A</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container_add_on container-fluid">
+        <div class="row row_add_on">
+            <div class="col- logo_container">
+                <img src="images/Picture5.svg ">
+            </div>
+        </div>
+        <div class="row row_add_on">
+            <div class="col- goal">
+                <h1>Mathifestation is the platform that brings together maths geeks to solve maths problems that poses difficulties even to the best of the best</h1>
+            </div>
+            <!-- <div class="col-6 goal">
+                <h1>Mathifestation is the platform that brings together maths geeks to solve maths problems that poses difficulties even to the best of the best</h1>
+            </div> -->
+        </div>
+
+        <div class="row row_add_on">
+            <div class="col-xs-2"  id="animateMe">
+                <img src="images/logo_rubik_less.svg" class="objectFloating">
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
