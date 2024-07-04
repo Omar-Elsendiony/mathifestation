@@ -139,12 +139,14 @@ nav ul li a:hover {
 footer{
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -24;
     width: 100%;
+    /* top: 2%; */
     background-color: white;
     border-top: solid #f318a2;
     color: black;
     text-align: center;
+    /* padding: 10px; */
 }
 
 

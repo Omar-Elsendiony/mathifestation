@@ -12,57 +12,61 @@
 <!-- End Scripts  -->
 
 <style>
-    .row_container {
-        padding: 5% 0%;
+    .row_add_on {
+        margin: 5% 0%;
+        /* height:20%   */
     }
 
-    .row_question {
-        margin: 3% 0%;
-        /* text-align: center; */
-    }
-
-    .column_question {
-        background-color: lightgray;
-        border: 2px solid grey;
-        border-radius: 10px;
-        padding: 2%;
-    }
-
-    h4 {
+    .introduction_text {
+        padding: 5%;
         text-align: center;
-        width: 7rem;
-        height: 7rem;
-        font-size: 5rem;
-        margin: 5%;
-        background-color: hotpink;
-
-        box-shadow: 0 0 100px #f318a2;
-        /* padding: ; */
-        border: 4px solid white;
-        border-radius: 50%;
+        color: #F7FFF7;
     }
 
-    input[type="submit"] {
-        width: 100%;
+    .container_add_on {
+        font-family: 'normalFont', sans-serif;
         background-color: #0B022D;
-        text-align: center;
+        height: 100%;
     }
 
-    #number-one,
-    #number-two,
-    #number-three {
-        color: white;
+    .logo_container {
+        height: 100%;
     }
+
+    h3 {
+        color: #f318a2;
+    }
+
+    /* html,
+    body {
+        height: 100% !important;
+    } */
+
+
+    @media only screen and (min-width: 0px) and (max-width: 599px) {
+        .container_add_on {
+            flex-direction: column-reverse;
+            width: 100vw;
+        }
+        .goal h1{
+            font-size: 2rem;
+        }
+    }
+
+    .goal{
+        text-align: center;
+        color: #F7FFF7;
+        padding: 0 15%;
+    }
+
+
 </style>
 
+
 <script>
-    {
-        %
-        if error != None %
-    }
-    alert("{{ error }}"); {
-        % endif %
-    }
+    {% if error != None %}
+        alert("{{ error }}");
+    {% endif %}
 </script>
 
 {% endblock %}

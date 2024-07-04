@@ -67,7 +67,7 @@ def index():
         description: Index
     """
     # print(session.get("username"))
-    return render_template('index.html', user=session.get("username"))
+    return render_template('index.html', user=session.get("username"), error=None)
 
 
 

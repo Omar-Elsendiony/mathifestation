@@ -8,76 +8,187 @@
         padding: 10%;
     }
 
-    .introduction_text{
+    .introduction_text {
         padding: 5%;
         text-align: center;
         color: #F7FFF7;
     }
 
-    .introduction_container{
+    .introduction_container {
         font-family: 'normalFont', sans-serif;
         background-color: #0B022D;
     }
 
-    .logo_container{
+    .logo_container {
         height: 100%;
         margin-top: 5%;
     }
 
-    h3{
+    h3 {
         color: #f318a2;
     }
 
     @media only screen and (min-width: 0px) and (max-width: 599px) {
-    .introduction_container {
+        .introduction_container {
             flex-direction: column-reverse;
             width: 100vw;
         }
     }
-
 </style>
 
+<!-- Part of the motivation -->
+<!-- Styles -->
+<!-- End Styles -->
+
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='scripts/jQuery.js')}} "></script>
+<script src="{{ url_for('static', filename='scripts/about.js')}}"></script>
+<!-- End Scripts  -->
+
+<style>
+    .row_add_on {
+        margin: 7% 0%;
+        /* height:20%   */
+    }
+
+
+    .introduction_text {
+        padding: 5%;
+        text-align: center;
+        color: #F7FFF7;
+    }
+
+    .container_add_on {
+        font-family: 'normalFont', sans-serif;
+        background-color: #0B022D;
+        height: 115vh;
+    }
+
+    .logo_container {
+        height: 100%;
+    }
+
+    h3 {
+        color: #f318a2;
+    }
+
+    /* html,
+    body {
+        height: 100% !important;
+    } */
+
+
+    @media only screen and (min-width: 0px) and (max-width: 599px) {
+        .container_add_on {
+            flex-direction: column-reverse;
+            width: 100vw;
+        }
+
+        .goal h1 {
+            font-size: 1rem;
+        }
+    }
+
+    .goal {
+        text-align: center;
+        color: #F7FFF7;
+        padding: 0 15%;
+    }
+
+    .objectFloating {
+        position: absolute;
+        width: 56px !important;
+        height: 53px !important;
+    }
+</style>
+
+<script>
+    {
+        %
+        if error != None %
+    }
+    alert("{{ error }}"); {
+        % endif %
+    }
+</script>
 
 {% endblock %}
 
-
 {% block body_block %}
-    <div class="introduction_container container-fluid">
-        <div class="row introduction_row m-0 d-flex justify-content-center">
-            <div class="col-md-6 introduction_text order-lg-1 order-2">
-                <h2>Are you ready to give your brain an exercise?</h2>
-                <h3>Start with Mathifestation!</h3>
+<div class="introduction_container container-fluid">
+    <div class="row introduction_row m-0 d-flex justify-content-center">
+        <div class="col-md-6 introduction_text order-lg-1 order-2">
+            <h2>Are you ready to give your brain an exercise?</h2>
+            <h3>Start with Mathifestation!</h3>
+        </div>
+        <div class="col-md-6 logo_container order-lg-2  order-1">
+            <img src="{{ url_for('static', filename='images/Picture5.svg')}}">
+        </div>
+    </div>
+</div>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4  d-flex align-items-stretch">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/card_1.jpg')}}" class="card-img-top" alt="Card Image 1">
+                <div class="card-body">
+                    <h5 class="card-title">Ask Question</h5>
+                    <p class="card-text">Ask Any Question about any thing you do not understand</p>
+                    <a href="#" class="btn btn-primary">Ask</a>
+                </div>
             </div>
-            <div class="col-md-6 logo_container order-lg-2  order-1">
-                <img src="{{ url_for('static', filename='images/Picture5.svg')}}">
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-4  d-flex align-items-stretch">
+            <div class="card ">
+                <img src="{{ url_for('static', filename='images/card_2.jpg')}}" class="card-img-top" alt="Card Image 2">
+                <div class="card-body">
+                    <h5 class="card-title">Answer Questions</h5>
+                    <p class="card-text">Answer the questions of other fellow Maths Geeks</p>
+                    <a href="#" class="btn btn-primary">Answer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4  d-flex align-items-stretch">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/card_3.jpg')}}" class="card-img-top" alt="Card Image 2">
+                <div class="card-body">
+                    <h5 class="card-title">Contests</h5>
+                    <p class="card-text">Enroll into contests and quizzes to challenge yourself (Soon).</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container mt-5">
-        <div class="row">
-            <!-- Card 1 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card Image 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Card Title 1</h5>
-                        <p class="card-text">This is a brief description of the first card.  &#63 &#63 &#63</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card Image 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Card Title 2</h5>
-                        <p class="card-text">This is a brief description of the second card.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            
+</div>
+
+<div class="container_add_on container-fluid ">
+    <div class="row row_add_on d-flex justify-content-center">
+        <div class="col- logo_container">
+            <img src="images/Picture5.svg ">
         </div>
     </div>
+    <div class="row row_add_on">
+        <div class="col- goal">
+            <h1>Motivation for Mathifestation is to create a platform that brings together maths geeks in a mathematical
+                environment to solve maths problems that poses
+                difficulties even to the best of the best and enroll into contests</h1>
+        </div>
+        <!-- <div class="col-6 goal">
+                    <h1>Mathifestation is the platform that brings together maths geeks to solve maths problems that poses difficulties even to the best of the best</h1>
+                </div> -->
+    </div>
+
+    <div class="row row_add_on">
+        <div class="col-2" id="animateMe">
+            <img src="images/logo_rubik_less.svg" class="objectFloating">
+        </div>
+    </div>
+</div>
+
+
+
+
 {% endblock %}
