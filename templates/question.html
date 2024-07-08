@@ -2,11 +2,11 @@
 
 {% block header_block %}
     <!-- <link rel="stylesheet" href="styles/question.css"> -->
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/rich_text_editor.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/rich_text_editor.css')}}">
 
-    <script src="scripts/jQuery.js"></script>
-    <script src="scripts/rich_text_editor.js"></script>
+    <script src="{{ url_for('static', filename='scripts/jQuery.js')}}"></script>
+    <script src="{{ url_for('static', filename='scripts/rich_text_editor.js')}}"></script>
 
     <style>
         .row_container {
@@ -67,33 +67,27 @@
         h4 {
             color: #f318a2;
         }
+
+        input[value="Post"]
+        {
+            width:100px !important;
+        }
     </style>
+
+    <script>
+
+        answers = {{ answers }}
+        console.log(answers)
+    </script>
 {% endblock %}
 
 {% block body_block %}
     <div class="container question_metadata">
-        <div class="row d-flex align-items-center" style="height: 100%; width: 100%;">
+        <div class="row d-flex align-items-center" style="width: 100%;">
             <div class="col-md-12 order-lg-1 order-2 ">
                 <!-- <h1>Math isn't Mathing</h1> -->
-                <h2> Is it possible to use the same ssh private/public key pair on 2 machines to access a git
-                    repository?</h2>
-                <p>I've recently setup an inhouse git repository server and have it up and running with gitosis
-                    installed as the management tool. Read only access is available via the git:// protocol and write
-                    access is available via gitosis using ssh public keys.
-
-                    I have a developer that has been granted access to his projects with a public key that was generated
-                    on his desktop workstation.
-
-                    He is now wanting to access that repository from his laptop using the same ssh key pair. He's copied
-                    has .ssh folder in it's entirety to his laptop and has tried to clone from the repository without
-                    success.
-
-                    Is this a valid thing to try?
-
-                    Does a ssh key pair need to be generated per machine? This seems weird as it would effectively
-                    require a per machine username to be added to the gitosis configuration.
-
-                    Any help would be appreciated.</p>
+                <h2>{{ question.title }}</h2>
+                <p>{{ question.body }}</p>
             </div>
         </div>
     </div>
@@ -104,6 +98,16 @@
         <div>
             <h3>Answers</h3>
         </div>
+        {% for index in range(answers | length) %}
+            <div class="row row_question d-flex align-items-center">
+                <div class="col-md-12 column_question">
+                    <div>
+                        <a>@{{ answers[index] }}</a>
+                        <p>{{ answers[index].body }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
         <div class="row row_question d-flex align-items-center">
             <div class="col-md-12 column_question">
                 <div>

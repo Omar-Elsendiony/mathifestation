@@ -107,13 +107,16 @@ class DBStorage:
         return count
 
 
-    def get_attribute(self, cls, attributes, values):
-        theClass = classes[cls]
+    def get_attribute(self, cls, attributes, values, select_columns=None):
+        if (select_columns is None):
+            queryElement = classes[cls]
+        else:
+            queryElement = eval(cls + "." + select_columns)
         
         for attr_index, attr in enumerate(attributes):
             var = eval(cls + "." + attr)
             if (attr_index == 0):
-                result = self.__session.query(theClass).filter(var == values[attr_index])
+                result = self.__session.query(queryElement).filter(var == values[attr_index])
                 # print(result)
             else:
                 # var = eval(cls + "." + attr)
@@ -124,7 +127,7 @@ class DBStorage:
         return result
 
 
-    def search(self, cls, searchAttributes, searchValues, limit=None):
+    def search(self, cls, searchAttributes, searchValues, limit=None, order_by=None, order=None):
         theClass = classes[cls]
         for attr_index, attr in enumerate(searchAttributes):
             var = eval(cls + "." + attr)

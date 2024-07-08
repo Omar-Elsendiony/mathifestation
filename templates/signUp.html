@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
 {% block header_block %}
-<link rel="stylesheet" href="styles/signUp.css">
-<link rel="stylesheet" href="styles/header.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/signUp.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css')}}">
 
 
 <script src="{{ url_for('static', filename='scripts/jQuery.js')}}"></script>
@@ -20,7 +20,7 @@
     }
 
     .sign_up_container {
-        height: 100%;
+        height: fit-content;
         font-family: 'Rubik', sans-serif;
         background-color: #0B022D;
     }
@@ -33,6 +33,11 @@
 
     .nopadding {
         padding: 0 !important;
+    }
+
+    form a img {
+        width: 125px;
+        height: 118px;
     }
 </style>
 

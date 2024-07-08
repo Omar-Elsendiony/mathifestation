@@ -161,10 +161,18 @@ def question(id):
       200:
         description: Question
     """
-    question = storage.get_attribute("Question", ["email", "password"], [request.form.get("email"), request.form.get("password")])
-
+    question = storage.get_attribute("Question", ["id"], [id])[0]
+    if (question == []):
+        return render_template('ask_question.html', error="Question not found", user=session.get("username"))
     
-    return render_template('ask_question.html')
+    print(question.id)
+    answers = storage.get_attribute("Answer", ["question_id"], [id])
+    users_names = []
+    for answer in answers:
+        users_names.append(storage.get_attribute("User", ["id"], [answer.user_id]))
+    
+    return render_template('question.html', question=question,
+                           user=session.get("username"), answers=answers, users_names_answers=users_names)
 
 
 @app.route('/search_question', strict_slashes=False, methods=["GET", "POST"])
