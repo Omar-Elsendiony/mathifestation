@@ -110,14 +110,13 @@ class DBStorage:
     def get_attribute(self, cls, attributes, values):
         theClass = classes[cls]
         
-        
         for attr_index, attr in enumerate(attributes):
+            var = eval(cls + "." + attr)
             if (attr_index == 0):
-                var = eval(cls + "." + attr)
                 result = self.__session.query(theClass).filter(var == values[attr_index])
                 # print(result)
             else:
-                var = eval(cls + "." + attr)
+                # var = eval(cls + "." + attr)
                 result = result.filter(var == values[attr_index])
                 # print(result)             
         result = result.all()
@@ -125,6 +124,20 @@ class DBStorage:
         return result
 
 
+    def search(self, cls, searchAttributes, searchValues, limit=None):
+        theClass = classes[cls]
+        for attr_index, attr in enumerate(searchAttributes):
+            var = eval(cls + "." + attr)
+            if (attr_index == 0):
+                result = self.__session.query(theClass).filter(var.like("%" + searchValues[attr_index] + "%"))
+            else:
+                result = result.filter(var == searchValues[attr_index])
+        if (limit is not None):
+            result = result.limit(limit)
+        result = result.all()
+        return result
+                
+                
 # db = DBStorage()
 # db.reload()
 # db.get_attribute("Question", ["id", "user_id"], ["5bc150de-77ba-4a19-87ee-8b47ed720862", "d08497bc-0f45-4eb6-aa5b-524155a0e2ee"])

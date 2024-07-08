@@ -47,8 +47,8 @@ setTimeout(() => {
         var position = element.getBoundingClientRect();
         var x = position.left;
         var y = position.top;
-        console.log(x, y);
-        console.log(screen.width);
+        // console.log(x, y);
+        // console.log(screen.width);
         if (start == true) {
             start = false;
             leftToRight();

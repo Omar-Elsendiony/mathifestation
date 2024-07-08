@@ -153,15 +153,35 @@ def ask_question():
     return render_template('ask_question.html',  user=session.get("username"), error=None)
 
 
-# @app.route('/question', strict_slashes=False)
-# def ask_question():
-#     """ Question
-#     ---
-#     responses:
-#       200:
-#         description: Question
-#     """
-#     return render_template('ask_question.html')
+@app.route('/question/<id>', strict_slashes=False)
+def question(id):
+    """ Question
+    ---
+    responses:
+      200:
+        description: Question
+    """
+    question = storage.get_attribute("Question", ["email", "password"], [request.form.get("email"), request.form.get("password")])
+
+    
+    return render_template('ask_question.html')
+
+
+@app.route('/search_question', strict_slashes=False, methods=["GET", "POST"])
+def search_question():
+    search_value = request.values.get("search_value")
+    if request.method == "POST":
+        availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
+        questions = []
+        for q in availableQuestions:
+            questions.append(q.to_dict())
+        return jsonify({'questions_list': questions})
+    else:
+        availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
+        questions = []
+        for q in availableQuestions:
+            questions.append(q.to_dict())
+        return render_template('search_question.html', questions=questions, user=session.get("username"))
 
 
 

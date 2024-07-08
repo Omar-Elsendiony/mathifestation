@@ -103,13 +103,9 @@
 </style>
 
 <script>
-    {
-        %
-        if error != None %
-    }
-    alert("{{ error }}"); {
-        % endif %
-    }
+    {% if error != None %}
+        alert("{{ error }}"); 
+    {% endif %}
 </script>
 
 {% endblock %}
