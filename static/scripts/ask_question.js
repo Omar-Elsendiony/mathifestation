@@ -29,11 +29,15 @@ setTimeout(() => {
     
 
     $("#submit").click(function() {
+        // if ({{ user.is_authenticated }} == false) {
+
+        // }
         var question = document.getElementById("question");
         content = document.getElementById("content").textContent;
         content2 = document.getElementById("title").value;
         console.log(content2);
         console.log(content);
+        
         // question.setAttribute('value', content);
         question.value = content;
 
