@@ -191,7 +191,21 @@ def search_question():
             questions.append(q.to_dict())
         return render_template('search_question.html', questions=questions, user=session.get("username"))
 
-
+@app.route('/answer_question/<question_id>', strict_slashes=False, methods=["GET", "POST"])
+def answer_question(question_id):
+    search_value = request.values.get("search_value")
+    if request.method == "POST":
+        availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
+        questions = []
+        for q in availableQuestions:
+            questions.append(q.to_dict())
+        return jsonify({'questions_list': questions})
+    else:
+        availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
+        questions = []
+        for q in availableQuestions:
+            questions.append(q.to_dict())
+        return render_template('search_question.html', questions=questions, user=session.get("username"))
 
 
 

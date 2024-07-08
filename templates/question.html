@@ -127,7 +127,7 @@
         </div>
 
         <div class="row row_question d-flex align-items-center">
-            <form action="/submit_form" class="form_content" method="post">
+            <form action="/answer_question/{{ question.id }}"  class="form_content" method="post">
 
                 <div class="col-md-8 column_question">
                     <div>
@@ -184,6 +184,7 @@
                             </div>
 
                             <div class="content" contenteditable="true" required></div>
+                            <input type="hidden" id="answer" name="answer" required>
                         </div>
                     </div>
                     <input type="button" value="Post"></div>
