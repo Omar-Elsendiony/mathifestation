@@ -208,6 +208,25 @@ def answer_question(question_id):
         return render_template('search_question.html', questions=questions, user=session.get("username"))
 
 
+@app.route('/test', strict_slashes=False, methods=["GET", "POST"])
+def test():
+    # search_value = request.values.get("search_value")
+    # if request.method == "POST":
+    #     availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
+    #     questions = []
+    #     for q in availableQuestions:
+    #         questions.append(q.to_dict())
+    #     return jsonify({'questions_list': questions})
+    # else:
+    #     availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
+    #     questions = []
+    #     for q in availableQuestions:
+    #         questions.append(q.to_dict())
+    questions = {"1": {"que_text":"What is?", "1": "lolo", "2": "kuktu", "3": "ki7i5i", "4": "yhee"}}
+    jsonedQ = jsonify(questions)
+    return render_template('test.html', user=session.get("username"), questions=jsonedQ)
+
+
 
 if __name__ == "__main__":
     """ Main Function """

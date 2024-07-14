@@ -78,6 +78,15 @@
         }
     </style>
 
+
+    <script>
+        {% if (error) %}
+            alert("www{{ error }}www");
+            
+        {% endif %}
+    </script>
+    
+
     {% block header_block %}
     {% endblock %}
 
@@ -107,16 +116,16 @@
         <nav>
             {% if user==None %}
             <ul>
-                <li><a href="/about">About</a></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signUp">Sign Up</a></li>
+                <li><a href="/test">Test Yourself</a></li>
             </ul>
             <div>
 
             </div>
             {% else %}
             <ul>
-                <li><a href="/about">About</a></li>
+                <li><a href="/test">Test Yourself</a></li>
             </ul>
             {% endif %}
         </nav>

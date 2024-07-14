@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+
+{% block header_block %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/signUp.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css')}}">
+
+<script src="{{ url_for('static', filename='scripts/jQuery.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/test.js')}}"></script>
+
+<style>
+    @media (max-width: 1024px) {
+        .playing_rubik {
+            display: none;
+        }
+    }
+
+    .question_column {
+        /* font-style: "normalFont"; */
+        padding: 3%;
+        display: flex;
+        justify-content: center;
+        /* color: #F7FFF7; */
+    }
+
+    .question_container {
+        height: fit-content;
+        font-family: 'Rubik', sans-serif;
+        background-color: #0B022D;
+    }
+
+    .logo_container {
+        height: 100%;
+        margin-top: 10%;
+        /* margin-bottom: 15%; */
+    }
+
+    .nopadding {
+        padding: 0 !important;
+    }
+
+    form a img {
+        width: 125px;
+        height: 118px;
+    }
+
+
+    .question_form {
+        margin: 10% 0;
+        background-color: aliceblue;
+        width: 70%;
+        padding: 5%;
+        border: solid 1px hsl(0, 0%, 80%);
+        border-radius: 3%;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #f318a2;
+        border-radius: 5px;
+        /* background-color: #f318a2; */
+        /* font-size: 1em; */
+    }
+
+
+    input[type="submit"] {
+        width: 100px;
+        background-color: #f318a2;
+        color: white;
+        font-size: 1em;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    #floatingRubik {
+        width: 56px;
+        height: 53px;
+        position: absolute;
+    }
+
+
+    section .option_list .option {
+        background: aliceblue;
+        border: 1px solid #84c5fe;
+        border-radius: 5px;
+        padding: 8px 15px;
+        font-size: 17px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .test_title{
+        border-bottom: solid 2px #f318a2;
+    }
+
+    .que_text{
+        margin-bottom: 50px;
+    }
+
+    .controls{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .numberQuestion{
+        margin:0;
+    }
+</style>
+
+<script>
+    parseMe = JSON.parse({{questions}})
+    console.log({{questions}})
+
+</script>
+
+
+{% endblock %}
+
+{% block body_block %}
+
+<div class="question_container container-fluid">
+    <div class="introduction_row row">
+        <div class="col-sm-2 playing_rubik">
+            <img src="images/logo_rubik_less.svg" id="floatingRubik">
+        </div>
+
+        <div class="col-12 col-lg-8 question_column p-0">
+            <form action="/signUp" class="question_form" method="post">
+                <h2 class="test_title">Number Theory Hard Questions</h2>
+                <section>
+                    <h3 class="que_text">What is 2 + 2?</h3>
+                    <div class="option_list">
+                        
+                        <div  class="option" onclick="optionSelected(this)">
+                            <span>first option</span>
+                        </div>
+
+                        <div  class="option" onclick="optionSelected(this)">
+                            <span>second optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond option</span>
+                        </div>
+
+                        <div  class="option" onclick="optionSelected(this)">
+                            <span>third option</span>
+                        </div>
+
+                        <div class="option" onclick="optionSelected(this)">
+                            <span>fourth option</span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button >Previous</button>
+                        <p class="numberQuestion">Question 1 of 10</p>
+                        <button >Next</button>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
