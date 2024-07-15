@@ -2,6 +2,10 @@
 """
 Contains the class DBStorage
 """
+from os import getenv
+import sqlalchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 import models
 from models.base_model import BaseModel, Base
@@ -9,12 +13,16 @@ from models.review import Review
 from models.user import User
 from models.question import Question
 from models.answer import Answer
-from os import getenv
-import sqlalchemy
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from models.question import Question
+from models.quiz import Quiz
+from models.quiz_questions import Quiz_Questions
+from models.quiz_questions_choices import Quiz_Questions_Choices
+##########################################################################################
 
-classes = {"Review": Review, "User": User, "Question": Question, "Answer": Answer}
+classes = {"BaseModel": BaseModel,"Review": Review , "User": User, "Question": Question, "Answer": Answer,
+           "Quiz": Quiz, "Quiz_Questions": Quiz_Questions, "Quiz_Questions_Choices": Quiz_Questions_Choices}
+
+# classes = {"Review": Review, "User": User, "Question": Question, "Answer": Answer}
 
 
 class DBStorage:

@@ -24,6 +24,7 @@ class User(BaseModel, Base):
         users_questions = relationship("Question", backref="user_questions", cascade="all, delete")
         users_answers = relationship("Answer", backref="user_answers", cascade="all, delete")
         users_reviews = relationship("Review", backref="user_reviews", cascade="all, delete")
+        users_quizzes = relationship("Quiz", backref="user_quizzes", cascade="all, delete")
         
     else:
         email = ""

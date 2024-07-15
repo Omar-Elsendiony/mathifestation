@@ -16,9 +16,13 @@ from models.review import Review
 from models.user import User
 from models.question import Question
 from models.answer import Answer
+from models.quiz import Quiz
+from models.quiz_questions import Quiz_Questions
+from models.quiz_questions_choices import Quiz_Questions_Choices
 ##########################################################################################
 
-classes = {"BaseModel": BaseModel,"Review": Review , "User": User, "Question": Question, "Answer": Answer}
+classes = {"BaseModel": BaseModel,"Review": Review , "User": User, "Question": Question, "Answer": Answer,
+           "Quiz": Quiz, "Quiz_Questions": Quiz_Questions, "Quiz_Questions_Choices": Quiz_Questions_Choices}
 
 
 app = Flask(__name__ , static_url_path='')
@@ -210,21 +214,17 @@ def answer_question(question_id):
 
 @app.route('/test', strict_slashes=False, methods=["GET", "POST"])
 def test():
-    # search_value = request.values.get("search_value")
-    # if request.method == "POST":
-    #     availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
-    #     questions = []
-    #     for q in availableQuestions:
-    #         questions.append(q.to_dict())
-    #     return jsonify({'questions_list': questions})
-    # else:
-    #     availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
-    #     questions = []
-    #     for q in availableQuestions:
-    #         questions.append(q.to_dict())
-    questions = {"1": {"que_text":"What is?", "1": "lolo", "2": "kuktu", "3": "ki7i5i", "4": "yhee"}}
-    jsonedQ = jsonify(questions)
-    return render_template('test.html', user=session.get("username"), questions=jsonedQ)
+
+    questions = {"1": "lol"}
+
+    return render_template('test.html', user=session.get("username"), questions = questions)
+
+@app.route('/test_create', strict_slashes=False, methods=["GET", "POST"])
+def test_create():
+
+    questions = {"1": "lol"}
+
+    return render_template('test_create.html', user=session.get("username"), questions = questions)
 
 
 

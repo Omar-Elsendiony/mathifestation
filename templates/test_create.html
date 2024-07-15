@@ -81,7 +81,7 @@
 
 
     section .option_list .option {
-        background: aliceblue;
+        background: white;
         border: 1px solid #84c5fe;
         border-radius: 5px;
         padding: 8px 15px;
@@ -94,44 +94,69 @@
         justify-content: space-between;
     }
 
-    .test_title{
+    .test_title {
         border-bottom: solid 2px #f318a2;
     }
 
-    .que_text{
+    .que_text {
         margin-bottom: 50px;
     }
 
-    .controls{
+    .controls {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        border-color: #f318a2;
     }
 
-    .numberQuestion{
-        margin:0;
+    .numberQuestion {
+        margin: 0;
+    }
+
+    .question_creation {
+        display: none;
+    }
+
+    .Rules_Intro {
+        text-align: center;
+        padding: 10px;
+    }
+
+    #startButton {
+        margin: auto;
+        background-color: green;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>
 
 <script>
     var parseMe = JSON.parse('{{ questions | tojson | safe }}')
     console.log("{{questions['1']}}")
+    var selectedItem = null;
 
-    function optionSelected(element){
+    function optionSelected(element) {
         console.log(element)
-        if (selectedItem != null){
+        if (selectedItem != null) {
             selectedItem.style.borderColor = "aliceblue";
             selectedItem.style.backgroundColor = "white";
-        }   
-            
+        }
         element.style.backgroundColor = "lightblue";
         element.style.borderColor = "blue";
         selectedItem = element;
     }
     
+    document.getElementById('startButton').addEventListener('click',
+        function(event) {
+            // Handle the form data
+            event.preventDefault();
+            document.querySelector('.meta_data').style.display = "none";
+            document.querySelector('.question_creation').style.display = "block";
+        });
 </script>
-
 
 {% endblock %}
 
@@ -145,33 +170,49 @@
 
         <div class="col-12 col-lg-8 question_column p-0">
             <form action="/signUp" class="question_form" method="post">
-                <h2 class="test_title">Number Theory Hard Questions</h2>
-                <section>
-                    <h3 class="que_text">What is 2 + 2?</h3>
-                    <div class="option_list">
-                        
-                        <div  class="option" onclick="optionSelected(this)">
-                            <span>first option</span>
-                        </div>
-
-                        <div  class="option" onclick="optionSelected(this)">
-                            <span>second optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond optionsecond option</span>
-                        </div>
-
-                        <div  class="option" onclick="optionSelected(this)">
-                            <span>third option</span>
-                        </div>
-
-                        <div class="option" onclick="optionSelected(this)">
-                            <span>fourth option</span>
-                        </div>
+                <div class="meta_data">
+                    <h1 class="Rules_Intro">Welcome to Mathifestation Quiz Creation</h1>
+                    <h2> Rules: </h2>
+                    <ul>
+                        <li>Each question has 4 options</li>
+                        <li>Each question has only one correct answer</li>
+                        <li>Each question has a time limit of 30 seconds</li>
+                        <li>Each question has a score of 10 points</li>
+                    </ul>
+                    <div>
+                        <button id="startButton">Start</button>
                     </div>
-                    <div class="controls">
-                        <button >Previous</button>
-                        <p class="numberQuestion">Question 1 of 10</p>
-                        <button >Next</button>
-                    </div>
-                </section>
+                </div>
+                <div class="question_creation">
+                    <h2 class="test_title">Number Theory Hard Questions</h2>
+                    <section>
+                        <h3 class="que_text">What is 2 + 2?</h3>
+                        <div class="option_list">
+
+                            <div class="option" onclick="optionSelected(this)">
+                                <span>first option</span>
+                            </div>
+
+                            <div class="option" onclick="optionSelected(this)">
+                                <span>second optionsecond optionsecond optionsecond optionsecond optionsecond
+                                    optionsecond optionsecond optionsecond optionsecond option</span>
+                            </div>
+
+                            <div class="option" onclick="optionSelected(this)">
+                                <span>third option</span>
+                            </div>
+
+                            <div class="option" onclick="optionSelected(this)">
+                                <span>fourth option</span>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button>Previous</button>
+                            <p class="numberQuestion">Question 1 of 10</p>
+                            <button>Next</button>
+                        </div>
+                    </section>
+                </div>
             </form>
         </div>
     </div>
