@@ -42,15 +42,15 @@
                 </div>
 
                 <div class="meta_data">
-                    <textarea class="quiz_meta" placeholder="Quiz Title..."></textarea>
-                    <textarea class="quiz_meta" placeholder="Quiz Description..."></textarea>
+                    <input id="quiz_meta_title" placeholder="Quiz Title...">
+                    <textarea id="quiz_meta_description" placeholder="Quiz Description..."></textarea>
                     <div class="start">
                         <button id="startQuestion">Start Questioning</button>
                     </div>
                 </div>
 
                 <div class="question_creation">
-                    <h2 class="test_title">Number Theory Hard Questions</h2>
+                    <h2 id="test_title"></h2>
                     <section>
                         <textarea class="que_text" placeholder="Question..."></textarea>
 
@@ -77,12 +77,13 @@
                             </div>
                         </div>
                         <div class="controls">
-                            <button>Previous</button>
+                            <button id="previousButton">Previous</button>
                             <p id="numberQuestion"></p>
                             <button id="add">+</button>
+                            <button id="next">next</button>
                         </div>
                         <div class="submitControl">
-                            <button class="submit">Submit</button>
+                            <button id="submit">Submit</button>
                         </div>
                     </section>
                 </div>

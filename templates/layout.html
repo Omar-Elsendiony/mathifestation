@@ -76,14 +76,22 @@
             background-color: #f318a2;
             color: white;
         }
+
+        ul li{
+            list-style: none;
+            padding: 0;
+        }
     </style>
 
 
     <script>
         {% if (error) %}
-            alert("www{{ error }}www");
-            
+            alert("{{ error }}");
         {% endif %}
+
+        function logout() {
+            window.location.href = "/logout";
+        }
     </script>
     
 
@@ -98,7 +106,7 @@
             <img src="{{ url_for('static', filename='images/logo_rubik_less.svg')}}">
         </a>
         <div class="search">
-            <input type="text" id="searchText" placeholder="Search...">
+            <input type="text" id="searchText" placeholder="Search Questions...">
             <ul class="dropdownSearch">
                 <!-- <li>ApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricot</li>
                 <li>Avocado</li>
@@ -136,7 +144,7 @@
                 <li>
                     Settings
                 </li>
-                <li>
+                <li onclick="logout()">
                     logout
                 </li>
             </ul>

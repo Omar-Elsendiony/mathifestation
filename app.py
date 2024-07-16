@@ -19,6 +19,8 @@ from models.answer import Answer
 from models.quiz import Quiz
 from models.quiz_questions import Quiz_Questions
 from models.quiz_questions_choices import Quiz_Questions_Choices
+from hashlib import md5
+
 ##########################################################################################
 
 classes = {"BaseModel": BaseModel,"Review": Review , "User": User, "Question": Question, "Answer": Answer,
@@ -29,7 +31,8 @@ app = Flask(__name__ , static_url_path='')
 
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 # app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+# cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+cors = CORS(app)
 
 
 
@@ -84,13 +87,15 @@ def signUp():
         # print(request.form.get("email"))
         # print(request.form.get("firstname"))
         # print(request.form.get("lastname"))
+        print(request.form.get("password"))
         ####################################
-        res = storage.get_attribute("User", "username", request.form.get("username"))
+        res = storage.get_attribute("User", ["username"], [request.form.get("username")])
         print(res)
         if (len(res) > 0):
             return render_template('signUp.html', error="User already exists")
         
         newUser = User(username=request.form.get("username"), email=request.form.get("email"), password=request.form.get("password") , first_name=request.form.get("firstname"), last_name=request.form.get("lastname"))
+        print(newUser.__dict__)
         session["user_id"] = newUser.id
         session["username"] = request.form.get("username")
         storage.new(newUser)
@@ -104,11 +109,14 @@ def signUp():
 @app.route('/login', strict_slashes=False, methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        userRegistered = storage.get_attribute("User", ["email", "password"], [request.form.get("email"), request.form.get("password")])
+        passwd = md5(request.form.get("password").encode()).hexdigest()
+        print(passwd)
+        userRegistered = storage.get_attribute("User", ["email", "password"], [request.form.get("email"), passwd])[0]
         if (userRegistered == []):
             return render_template('login.html', error="User not found")
         session["user_id"] = userRegistered.id
         session["username"] = userRegistered.username
+        
         # redirect to the main page
         return redirect("/")
     return render_template('login.html', error=None, user=session.get("username"))
@@ -214,19 +222,28 @@ def answer_question(question_id):
 
 @app.route('/test', strict_slashes=False, methods=["GET", "POST"])
 def test():
-
     questions = {"1": "lol"}
-
     return render_template('test.html', user=session.get("username"), questions = questions)
+
 
 @app.route('/test_create', strict_slashes=False, methods=["GET", "POST"])
 def test_create():
+    if (request.method == "POST"):
+        print(request.form.get("question"))
+        print(request.form.get("questions_options"))
+        print(request.form.get("question_title"))
+        print(request.form.get("question_description"))
+        return render_template('index.html', user = session.get("username"))
+    else:
+        questions = {"1": "lol"}
+        return render_template('test_create.html', user = session.get("username"), questions = questions)
 
-    questions = {"1": "lol"}
-
-    return render_template('test_create.html', user=session.get("username"), questions = questions)
 
 
+@app.route('/search_question_page', strict_slashes=False, methods=["GET", "POST"])
+def search_question_page():
+    return render_template('search_question.html', user = session.get("username"))
+    
 
 if __name__ == "__main__":
     """ Main Function """

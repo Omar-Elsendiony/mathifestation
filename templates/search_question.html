@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block header_block %}
+    <!-- <link rel="stylesheet" href="styles/question.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/rich_text_editor.css')}}">
+
+    <script src="{{ url_for('static', filename='scripts/jQuery.js')}}"></script>
+    <script src="{{ url_for('static', filename='scripts/rich_text_editor.js')}}"></script>
+
+    <style>
+        .row_container {
+            padding: 5% 0%;
+        }
+
+        .row_question {
+            margin: 3% 0%;
+            cursor: pointer;
+        }
+
+        .column_question:hover {
+            background-color: aliceblue;
+            border: 2px solid grey;
+            border-radius: 10px;
+            padding: 2%;
+        }
+
+        .column_question {
+            background-color: lightgray;
+            border: 2px solid grey;
+            border-radius: 10px;
+            padding: 2%;
+        }
+
+
+        input[type="button"] {
+            width: 10%;
+            background-color: #0B022D;
+            text-align: center;
+            color: white;
+            border: none;
+
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #f318a2;
+            border-radius: 5px;
+        }
+
+
+
+        .column_question div a {
+            color: blue !important;
+            cursor: pointer;
+        }
+
+        .container {
+            margin: 5% 5%;
+        }
+
+        hr {
+            border: 2px solid #f318a2;
+        }
+
+        h4 {
+            color: #f318a2;
+        }
+
+        input[value="Post"]
+        {
+            width:100px !important;
+        }
+
+        .question_title{
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+    
+
+{% endblock %}
+
+{% block body_block %}
+    <div class="container question_metadata">
+        <div class="row d-flex align-items-center" style="width: 100%;">
+            <input type="text" id="searchText" placeholder="Search Questions...">
+        </div>
+    </div>
+
+    <div class="container">
+        <div>
+            <h3>Results</h3>
+        </div>
+
+        {% for index in range(answers | length) %}
+            <div class="row row_question d-flex align-items-center">
+                <div class="col-md-12 column_question">
+                    <div>
+                        <a>@{{ answers[index] }}</a>
+                        <p>{{ answers[index].body }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="row row_question d-flex align-items-center">
+            <div class="col-md-12 column_question">
+                <div>
+                    <a>@Ahmed Ramy</a>
+                    <p class="question_title"> What is 2+2?</p>
+                    <p class= "question_description">Be specific and imagine you’re asking a question to another person.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
+
+{% endblock %}

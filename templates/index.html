@@ -100,12 +100,30 @@
         width: 56px !important;
         height: 53px !important;
     }
+
+    .card-text{
+        height: 50px;
+    }
+
+
+
 </style>
 
 <script>
     {% if error != None %}
         alert("{{ error }}"); 
     {% endif %}
+
+
+    function ask_question() {
+        {% if user==None %}
+            alert("You need to login to ask a question");
+        {% else %}
+            console.log("{{user}}")
+            window.location.href = "/ask_question"
+        {% endif %}
+    }
+
 </script>
 
 {% endblock %}
@@ -131,7 +149,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Ask Question</h5>
                     <p class="card-text">Ask Any Question about any thing you do not understand</p>
-                    <a href="/ask_question" class="btn btn-primary">Ask</a>
+                    <a onclick="ask_question()" class="btn btn-primary">Ask</a>
                 </div>
             </div>
         </div>
@@ -154,6 +172,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Contests</h5>
                     <p class="card-text">Enroll into contests and quizzes to challenge yourself (Soon).</p>
+                    <a href="#" class="btn btn-primary">Test yourself</a>
                 </div>
             </div>
         </div>

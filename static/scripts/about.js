@@ -1,27 +1,10 @@
 
 setTimeout(() => {
-
-    // window.SineWave = SineWave = function() {
-    //     this.css = function(p) {
-    //         s = Math.sin((p-1)*500);  // 1
-    //         x = (5000 - p*5000) * 10; // 2
-    //         y = s * 100 + 150;
-    //         return {top: y + "px", left: x + "px"};
-    //     } 
-    // }
-    
-    // $(".objectFloating").stop().animate(
-    //     {path: new SineWave}, 
-    //     50000, // 3
-    //     "linear"
-    // );
-    
-
     function leftToRight() {
-        $(".objectFloating").animate({ left: ['+=10%', 'linear'], top: ['+=5%', 'swing'] }, 1000, function() {
-            $(this).animate({ left: ['+=10%', 'linear'], top: ['-=5%', 'swing'] }, 1000, function() {
-                $(this).animate({ left: ['+=10%', 'linear'], top: ['+=5%', 'swing'] }, 1000, function() {
-                    $(this).animate({ left: ['+=10%', 'linear'], top: ['-=5%', 'swing'] }, 1000, function() {
+        $(".objectFloating").animate({ left: ['+=10%', 'linear'], top: ['+=2%', 'swing'] }, 1000, function() {
+            $(this).animate({ left: ['+=10%', 'linear'], top: ['-=2%', 'swing'] }, 1000, function() {
+                $(this).animate({ left: ['+=10%', 'linear'], top: ['+=2%', 'swing'] }, 1000, function() {
+                    $(this).animate({ left: ['+=10%', 'linear'], top: ['-=2%', 'swing'] }, 1000, function() {
                         animateElement(); // Call the function again to loop the animation
                     });
                 });
@@ -30,10 +13,10 @@ setTimeout(() => {
     }
 
     function rightToLeft() {
-        $(".objectFloating").animate({ left: ['-=10%', 'linear'], top: ['+=5%', 'swing'] }, 1000, function() {
-            $(this).animate({ left: ['-=10%', 'linear'], top: ['-=5%', 'swing'] }, 1000, function() {
-                $(this).animate({ left: ['-=10%', 'linear'], top: ['+=5%', 'swing'] }, 1000, function() {
-                    $(this).animate({ left: ['-=10%', 'linear'], top: ['-=5%', 'swing'] }, 1000, function() {
+        $(".objectFloating").animate({ left: ['-=10%', 'linear'], top: ['+=2%', 'swing'] }, 1000, function() {
+            $(this).animate({ left: ['-=10%', 'linear'], top: ['-=2%', 'swing'] }, 1000, function() {
+                $(this).animate({ left: ['-=10%', 'linear'], top: ['+=2%', 'swing'] }, 1000, function() {
+                    $(this).animate({ left: ['-=10%', 'linear'], top: ['-=2%', 'swing'] }, 1000, function() {
                         animateElement(); // Call the function again to loop the animation
                     });
                 });
@@ -76,8 +59,5 @@ setTimeout(() => {
     
     // Start the animation
     animateElement();
-
-
-
-}, 50);
+}, 1000);
 

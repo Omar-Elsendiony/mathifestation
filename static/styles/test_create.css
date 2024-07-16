@@ -85,7 +85,7 @@ section .option_list .option {
     justify-content: space-between;
 }
 
-.test_title {
+#test_title {
     border-bottom: solid 2px #f318a2;
 }
 
@@ -175,3 +175,10 @@ label{
     margin-bottom: 0;
 }
 
+.meta_data *{
+    margin-bottom: 20px;
+}
+
+#next{
+    display: none;
+}
