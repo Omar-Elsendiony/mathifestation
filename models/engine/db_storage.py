@@ -120,6 +120,7 @@ class DBStorage:
             queryElement = classes[cls]
         else:
             queryElement = eval(cls + "." + select_columns)
+            # print(queryElement)
         
         for attr_index, attr in enumerate(attributes):
             var = eval(cls + "." + attr)
@@ -129,7 +130,6 @@ class DBStorage:
             else:
                 # var = eval(cls + "." + attr)
                 result = result.filter(var == values[attr_index])
-                # print(result)             
         result = result.all()
         # print(result)
         return result

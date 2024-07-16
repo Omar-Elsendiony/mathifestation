@@ -1,198 +1,178 @@
 {% extends "layout.html" %}
 
 {% block header_block %}
-    <!-- <link rel="stylesheet" href="styles/question.css"> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/rich_text_editor.css')}}">
+<!-- <link rel="stylesheet" href="styles/question.css"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/rich_text_editor.css')}}">
 
-    <script src="{{ url_for('static', filename='scripts/jQuery.js')}}"></script>
-    <script src="{{ url_for('static', filename='scripts/rich_text_editor.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/jQuery.js')}}"></script>
+<script src="{{ url_for('static', filename='scripts/question.js')}}"></script>
 
-    <style>
-        .row_container {
-            padding: 5% 0%;
-        }
+<style>
+    .row_container {
+        padding: 5% 0%;
+    }
 
-        .row_question {
-            margin: 3% 0%;
-            /* text-align: center; */
-        }
+    .row_question {
+        margin: 3% 0%;
+        /* text-align: center; */
+    }
 
-        .column_question {
-            background-color: lightgray;
-            border: 2px solid grey;
-            border-radius: 10px;
-            padding: 2%;
-        }
+    .column_question {
+        background-color: lightgray;
+        border: 2px solid grey;
+        border-radius: 10px;
+        padding: 2%;
+    }
 
 
-        input[type="button"] {
-            width: 10%;
-            background-color: #0B022D;
-            text-align: center;
-            color: white;
-            border: none;
+    input[type="button"] {
+        width: 10%;
+        background-color: #0B022D;
+        text-align: center;
+        color: white;
+        border: none;
 
-        }
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #f318a2;
-            border-radius: 5px;
-            /* background-color: #f318a2; */
-            /* font-size: 1em; */
-        }
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #f318a2;
+        border-radius: 5px;
+        /* background-color: #f318a2; */
+        /* font-size: 1em; */
+    }
 
-        #number-one,
-        #number-two,
-        #number-three {
-            color: white;
-        }
+    #number-one,
+    #number-two,
+    #number-three {
+        color: white;
+    }
 
-        .column_question div a {
-            color: blue !important;
-            cursor: pointer;
-        }
+    .column_question div a {
+        color: blue !important;
+        cursor: pointer;
+    }
 
-        .container {
-            margin: 5% 5%;
-        }
+    .container {
+        margin: 5% 5%;
+    }
 
-        hr {
-            border: 2px solid #f318a2;
-        }
+    hr {
+        border: 2px solid #f318a2;
+    }
 
-        h4 {
-            color: #f318a2;
-        }
+    h4 {
+        color: #f318a2;
+    }
 
-        input[value="Post"]
-        {
-            width:100px !important;
-        }
-    </style>
+    input[value="Post"] {
+        width: 100px !important;
+    }
+</style>
 
-    <script>
 
-        answers = {{ answers }}
-        console.log(answers)
-    </script>
 {% endblock %}
 
 {% block body_block %}
-    <div class="container question_metadata">
-        <div class="row d-flex align-items-center" style="width: 100%;">
-            <div class="col-md-12 order-lg-1 order-2 ">
-                <!-- <h1>Math isn't Mathing</h1> -->
-                <h2>{{ question.title }}</h2>
-                <p>{{ question.body }}</p>
+<div class="container question_metadata">
+    <div class="row d-flex align-items-center" style="width: 100%;">
+        <div class="col-md-12 order-lg-1 order-2 ">
+            <!-- <h1>Math isn't Mathing</h1> -->
+            <h2>{{ question.title }}</h2>
+            <p>{{ question.body }}</p>
+        </div>
+    </div>
+</div>
+
+<hr> <!--  horizontal line that segments -->
+
+<div class="container">
+    <div>
+        <h3>Answers</h3>
+    </div>
+    {% for index in range(answers_body | length) %}
+    <div class="row row_question d-flex align-items-center">
+        <div class="col-md-12 column_question">
+            <div>
+                <a>@{{ users_names_answers[index] }}</a>
+                <p>{{ answers_body[index] }}</p>
             </div>
         </div>
     </div>
+    {% endfor %}
+    
 
-    <hr> <!--  horizontal line that segments -->
-
-    <div class="container">
-        <div>
-            <h3>Answers</h3>
-        </div>
-        {% for index in range(answers | length) %}
-            <div class="row row_question d-flex align-items-center">
-                <div class="col-md-12 column_question">
-                    <div>
-                        <a>@{{ answers[index] }}</a>
-                        <p>{{ answers[index].body }}</p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        <div class="row row_question d-flex align-items-center">
-            <div class="col-md-12 column_question">
+    <div class="row row_question d-flex align-items-center">
+        <form action="/answer_question/{{question.id}}" class="form_content" method="post">
+            <div class="col-md-8 column_question">
                 <div>
-                    <a>@Ahmed Ramy</a>
-                    <p>Be specific and imagine you’re asking a question to another person.</p>
-                </div>
-            </div>
-        </div>
+                    <h3>Your Answer</h3>
+                    <p>Answer if you know the answer of the question.</p>
 
-        <div class="row row_question d-flex align-items-center">
-            <div class="col-md-12 column_question">
-                <div>
-                    <a>@Ahmed Ramy</a>
-                    <p>Be specific and imagine you’re asking a question to another person.</p>
-                </div>
-            </div>
-        </div>
+                    <div class="main-content">
 
-        <div class="row row_question d-flex align-items-center">
-            <form action="/answer_question/{{ question.id }}"  class="form_content" method="post">
+                        <!--  Rich text Editor -->
+                        <div class="text-editor-header">
+                            <button type="button" class="btn" data-element="bold">
+                                <i class="fa fa-bold"></i>
+                            </button>
 
-                <div class="col-md-8 column_question">
-                    <div>
-                        <h3>Your Answer</h3>
-                        <p>Introduce the problem and expand on what you put in the title. Minimum 20 characters.</p>
+                            <button type="button" class="btn" data-element="italic">
+                                <i class="fa fa-italic"></i>
+                            </button>
 
-                        <div class="main-content">
+                            <button type="button" class="btn" data-element="underline">
+                                <i class="fa fa-underline"></i>
+                            </button>
 
-                            <!--  Rich text Editor -->
-                            <div class="text-editor-header">
-                                <button type="button" class="btn" data-element="bold">
-                                    <i class="fa fa-bold"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="insertUnorderedList">
+                                <i class="fa fa-list-ul"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="italic">
-                                    <i class="fa fa-italic"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="insertOrderedList">
+                                <i class="fa fa-list-ol"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="underline">
-                                    <i class="fa fa-underline"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="createLink">
+                                <i class="fa fa-link"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="insertUnorderedList">
-                                    <i class="fa fa-list-ul"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="justifyLeft">
+                                <i class="fa fa-align-left"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="insertOrderedList">
-                                    <i class="fa fa-list-ol"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="justifyCenter">
+                                <i class="fa fa-align-center"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="createLink">
-                                    <i class="fa fa-link"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="justifyRight">
+                                <i class="fa fa-align-right"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="justifyLeft">
-                                    <i class="fa fa-align-left"></i>
-                                </button>
+                            <button type="button" class="btn" data-element="justifyFull">
+                                <i class="fa fa-align-justify"></i>
+                            </button>
 
-                                <button type="button" class="btn" data-element="justifyCenter">
-                                    <i class="fa fa-align-center"></i>
-                                </button>
-
-                                <button type="button" class="btn" data-element="justifyRight">
-                                    <i class="fa fa-align-right"></i>
-                                </button>
-
-                                <button type="button" class="btn" data-element="justifyFull">
-                                    <i class="fa fa-align-justify"></i>
-                                </button>
-
-                                <button type="button" class="btn" data-element="insertImage">
-                                    <i class="fa fa-image"></i>
-                                </button>
-                            </div>
-
-                            <div class="content" contenteditable="true" required></div>
-                            <input type="hidden" id="answer" name="answer" required>
+                            <button type="button" class="btn" data-element="insertImage">
+                                <i class="fa fa-image"></i>
+                            </button>
                         </div>
-                    </div>
-                    <input type="button" value="Post"></div>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
+                        <div class="content" contenteditable="true" required></div>
+                        <input type="hidden" id="answer" name="answer" required>
+                    </div>
+                </div>
+                <input type="text" style="display: none;" id="answer_submit" name="answer_submit">
+                <input type="button" id="post" value="Post">
+            </div>
+    </div>
+    </form>
+</div>
+</div>
+
+<script src="https://use.fontawesome.com/a31a3f8384.js"></script>
 
 {% endblock %}

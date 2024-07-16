@@ -79,7 +79,10 @@
 
         ul li{
             list-style: none;
-            padding: 0;
+        }
+
+        ul{
+            padding:0;
         }
     </style>
 
@@ -106,21 +109,13 @@
             <img src="{{ url_for('static', filename='images/logo_rubik_less.svg')}}">
         </a>
         <div class="search">
-            <input type="text" id="searchText" placeholder="Search Questions...">
+            <form action="">
+            <input type="text" id="searchText" name="searchText" placeholder="Search Questions...">
+            </form>
             <ul class="dropdownSearch">
-                <!-- <li>ApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricotApricot</li>
-                <li>Avocado</li>
-                <li>Banana</li>
-                <li>Blackberry</li>
-                <li>Blueberry</li>
-                <li>Cherry</li>
-                <li>Coconut</li>
-                <li>Cranberry</li>
-                <li>Date</li>
-                <li>Watermelon</li> -->
+
             </ul>
         </div>
-
         <nav>
             {% if user==None %}
             <ul>
@@ -133,6 +128,8 @@
             </div>
             {% else %}
             <ul>
+                <li><a href="/ask_question">Ask Question</a></li>
+                <li><a href="/test_create">Create Quiz</a></li>
                 <li><a href="/test">Test Yourself</a></li>
             </ul>
             {% endif %}

@@ -4,6 +4,7 @@ from models import storage
 # from api.v1.views import app_views
 
 #################### flask imports ###########################################################
+# import requests
 from os import environ
 from flask import Flask, render_template, make_response, jsonify, redirect, request, session
 from flask_cors import CORS
@@ -177,14 +178,25 @@ def question(id):
     if (question == []):
         return render_template('ask_question.html', error="Question not found", user=session.get("username"))
     
-    print(question.id)
+    # print(question.id)
     answers = storage.get_attribute("Answer", ["question_id"], [id])
+    # print(answers)
     users_names = []
+    answers_body = []
     for answer in answers:
-        users_names.append(storage.get_attribute("User", ["id"], [answer.user_id]))
+        users_names.append(storage.get_attribute("User", ["id"], [answer.user_id], "username")[0][0])
+        answers_body.append(answer.body)
+    
+    print('---------------------------------')
+    print(users_names)
+    print('*********************************')
+    print(answers_body)
+    print('---------------------------------')
     
     return render_template('question.html', question=question,
-                           user=session.get("username"), answers=answers, users_names_answers=users_names)
+                           user=session.get("username"), answers_body=answers_body, users_names_answers=users_names)
+
+
 
 
 @app.route('/search_question', strict_slashes=False, methods=["GET", "POST"])
@@ -203,16 +215,26 @@ def search_question():
             questions.append(q.to_dict())
         return render_template('search_question.html', questions=questions, user=session.get("username"))
 
+
+
+
 @app.route('/answer_question/<question_id>', strict_slashes=False, methods=["GET", "POST"])
 def answer_question(question_id):
-    search_value = request.values.get("search_value")
     if request.method == "POST":
-        availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
-        questions = []
-        for q in availableQuestions:
-            questions.append(q.to_dict())
-        return jsonify({'questions_list': questions})
+        answer_body = request.form.get("answer_submit")
+        # print(request.form)
+        print("------------------------")
+        print(answer_body)
+        print(question_id)
+        print("------------------------")
+        answerObj = Answer(body=answer_body, question_id=question_id, user_id=session.get("user_id"))
+        storage.new(answerObj)
+        storage.save()
+        
+        return render_template('index.html', user=session.get("username"), error=None)
+
     else:
+        search_value = request.values.get("search_value")
         availableQuestions = storage.search("Question", ["title"], [search_value], limit=5)
         questions = []
         for q in availableQuestions:
@@ -220,10 +242,17 @@ def answer_question(question_id):
         return render_template('search_question.html', questions=questions, user=session.get("username"))
 
 
+
+
+
 @app.route('/test', strict_slashes=False, methods=["GET", "POST"])
 def test():
     questions = {"1": "lol"}
     return render_template('test.html', user=session.get("username"), questions = questions)
+
+
+
+
 
 
 @app.route('/test_create', strict_slashes=False, methods=["GET", "POST"])
@@ -240,10 +269,22 @@ def test_create():
 
 
 
+
+
+
+
+
 @app.route('/search_question_page', strict_slashes=False, methods=["GET", "POST"])
 def search_question_page():
     return render_template('search_question.html', user = session.get("username"))
     
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     """ Main Function """

@@ -33,12 +33,7 @@ setTimeout(() => {
             url: "/search_question/",
             data: {'search_value': $("#searchText").val()},
             dataType: "text",
-            // success: function(data){
-            //     alert("User Exists");
-            // },
-            // fail: function(data){
-            //     alert("User does not exist");
-            // }
+
         }).done(function(data){
             dataParsed = JSON.parse(data);
             // console.log(dataParsed);
