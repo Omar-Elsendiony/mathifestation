@@ -359,6 +359,8 @@ document.getElementById('submit').addEventListener('click',
 
         /////////// start submitting the content of the question, options and title /////////////
         submitContent()
+        document.querySelector('.question_creation').style.display = "none";
+        document.querySelector('.success_column').style.display = "block";
 });
 
 }, 1000);
