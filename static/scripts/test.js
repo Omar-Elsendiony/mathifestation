@@ -47,7 +47,13 @@ setTimeout(() => {
             event.preventDefault();
             document.querySelector('.quiz_info').style.display = "none";
             document.querySelector('.Quiz_Start').style.display = "block";
-            document.querySelector('#next').style.display = "block";
+            if (question_index == quiz_questions.length - 1){
+                document.getElementById('submitButton').style.display = "block";
+                document.getElementById('next').style.display = "none";
+            }
+            else{
+                document.querySelector('#next').style.display = "block";
+            }
 
             questionText.innerHTML = quiz_questions[question_index]
             for (let i = 0; i < options.length; i++) {
