@@ -218,15 +218,11 @@ def search_question():
 
 
 
+
 @app.route('/answer_question/<question_id>', strict_slashes=False, methods=["GET", "POST"])
 def answer_question(question_id):
     if request.method == "POST":
         answer_body = request.form.get("answer_submit")
-        # print(request.form)
-        # print("------------------------")
-        # print(answer_body)
-        # print(question_id)
-        # print("------------------------")
         answerObj = Answer(body=answer_body, question_id=question_id, user_id=session.get("user_id"))
         storage.new(answerObj)
         storage.save()
