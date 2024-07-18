@@ -188,6 +188,10 @@ label{
     margin-bottom: 20px;
 }
 
+.quiz_info *{
+    margin-bottom: 20px;
+}
+
 #next{
     display: none;
 }

@@ -91,7 +91,7 @@
 {% block body_block %}
     <div class="container question_metadata">
         <div class="row d-flex align-items-center" style="width: 100%;">
-            <input type="text" id="searchText" placeholder="Search Questions...">
+            <input type="text" id="searchText" placeholder="Search quizzes...">
         </div>
     </div>
 
@@ -99,16 +99,16 @@
         <div>
             <h3>Results</h3>
         </div>
-        {% if questions == [] %}
+        {% if quizzes == [] %}
             <h2> No results found</h2>
         {% else %}
-            {% for index in range(questions | length) %}
-            <a class="question" href="question/{{ questions[index].id }}"> 
+            {% for index in range(quizzes | length) %}
+            <a class="question" href="test/{{ quizzes[index].id }}"> 
                 <div class="row row_question d-flex align-items-center">
                     <div class="col-md-12 column_question">
                         <div>
-                            <h3>{{ questions[index].title }}</h3>
-                            <p>{{ questions[index].body }}</p>
+                            <h3>{{ quizzes[index].title }}</h3>
+                            <p>{{ quizzes[index].description }}</p>
                         </div>
                     </div>
                 </div>

@@ -223,10 +223,10 @@ def answer_question(question_id):
     if request.method == "POST":
         answer_body = request.form.get("answer_submit")
         # print(request.form)
-        print("------------------------")
-        print(answer_body)
-        print(question_id)
-        print("------------------------")
+        # print("------------------------")
+        # print(answer_body)
+        # print(question_id)
+        # print("------------------------")
         answerObj = Answer(body=answer_body, question_id=question_id, user_id=session.get("user_id"))
         storage.new(answerObj)
         storage.save()
@@ -246,12 +246,27 @@ def answer_question(question_id):
 
 
 @app.route('/test', strict_slashes=False, methods=["GET", "POST"])
-@app.route('/test/<int:id>', strict_slashes=False, methods=["GET", "POST"])
 def test(id=None):
     questions = {"1": "lol"}
     return render_template('test.html', user=session.get("username"), questions = questions)
 
 
+@app.route('/test/<test_id>', strict_slashes=False, methods=["GET", "POST"])
+def quiz(test_id):
+    if (request.method == "POST"):
+        pass
+    else:
+        quiz_data = storage.get_attribute("Quiz", ["id"], [test_id])[0]
+        questions_data = storage.get_attribute("Quiz_Questions", ["quiz_id"], [test_id])
+        choices_data = []
+        for question in questions_data:
+            choices_data.append(storage.get_attribute("Quiz_Questions_Choices", ["question_id"], [question.id]))
+        print(quiz_data)
+        print(questions_data)
+        print(choices_data)
+        
+        return render_template('test.html', user=session.get("username"), 
+                               quiz_data= quiz_data,  questions = questions_data, choices=choices_data)
 
 
 
@@ -294,7 +309,7 @@ def test_create():
 
 @app.route('/search_question_page', methods=['GET'], defaults={"page": 1}) 
 @app.route('/search_question_page/<int:page>', methods=['GET'])
-def paginate(page):
+def paginate_questions(page):
     page = page
     per_page = 200
     res = storage.paginate("Question", page, per_page)
@@ -309,9 +324,9 @@ def paginate(page):
 
 @app.route('/search_quiz_page', methods=['GET'], defaults={"page": 1}) 
 @app.route('/search_quiz_page/<int:page>', methods=['GET'])
-def paginate(page):
+def paginate_tests(page):
     page = page
-    per_page = 200
+    per_page = 1
     res = storage.paginate("Quiz", page, per_page)
     print(res)
     # users = User.query.paginate(page,per_page,error_out=False)
