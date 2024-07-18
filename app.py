@@ -254,19 +254,31 @@ def test(id=None):
 @app.route('/test/<test_id>', strict_slashes=False, methods=["GET", "POST"])
 def quiz(test_id):
     if (request.method == "POST"):
-        pass
+        mark = 0
+        sentItems = request.get_json()
+        print(sentItems.get("choices"))
+        choicesUser = (sentItems.get("choices"))
+        print(test_id)
+        questions_data = storage.get_attribute("Quiz_Questions", ["quiz_id"], [test_id])
+        for qid, q in enumerate(questions_data):
+            # print(choicesUser[qid])
+            # print(q.correct_answer)
+            if (q.correct_answer == choicesUser[qid]):
+                mark+=1
+                
+        return jsonify({"mark":mark})
     else:
         quiz_data = storage.get_attribute("Quiz", ["id"], [test_id])[0]
         questions_data = storage.get_attribute("Quiz_Questions", ["quiz_id"], [test_id])
         choices_data = []
         for question in questions_data:
             choices_data.append(storage.get_attribute("Quiz_Questions_Choices", ["question_id"], [question.id]))
-        print(quiz_data)
-        print(questions_data)
-        print(choices_data)
+        # print(quiz_data)
+        # print(questions_data)
+        print(choices_data[0][0])
         
         return render_template('test.html', user=session.get("username"), 
-                               quiz_data= quiz_data,  questions = questions_data, choices=choices_data)
+                               quiz= quiz_data,  quiz_questions = questions_data, choices=choices_data)
 
 
 
@@ -291,7 +303,7 @@ def test_create():
                 qqC = Quiz_Questions_Choices(question_id=question.id,answer_text=questions_options[i][j])
                 storage.new(qqC)
         storage.save()
-        jsonify({"output_message":"You have submitted test successfully"})
+        # jsonify({"output_message":"You have submitted test successfully"})
         return jsonify({"output_message":"You have submitted test successfully"})
     else:
         questions = {"1": "lol"}

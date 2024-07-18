@@ -12,6 +12,7 @@
 
 .Quiz_title{
     color: #f318a2;
+    border-bottom: 2px solid #f318a2;
 }
 
 
@@ -22,30 +23,40 @@
 </style>
 
 <script>
+    var idn = 0
+    var quiz_id = "{{ quiz.id }}"
+    console.log(quiz_id)
+    var quiz_questions = new Array()
+    var quiz_questions_choices = new Array()
+    {% for index in range(quiz_questions | length) %}
+        quiz_questions.push("{{ quiz_questions[index].question_text }}")
+        var question_choices = new Array()
+        {% for index2 in range(choices[index] | length)%}
+            question_choices.push("{{ choices[index][index2].answer_text }}")
+        {% endfor %}
+        quiz_questions_choices.push(question_choices)
+        
+    {% endfor %}
 
-    var selectedItem = null;
-    function optionSelected(element) {
-        console.log(element)
-        if (selectedItem != null) {
-            selectedItem.style.borderColor = "aliceblue";
-            selectedItem.style.backgroundColor = "white";
-        }
-        element.style.backgroundColor = "lightblue";
-        element.style.borderColor = "blue";
-        selectedItem = element;
-    }
-    setTimeout(() => {
 
-    document.getElementById('startButton').addEventListener('click',
-        function(event) {
-            // Handle the form data
-            event.preventDefault();
-            document.querySelector('.quiz_info').style.display = "none";
-            document.querySelector('.Quiz_Start').style.display = "block";
-        });
-    
-    }, 1000);
 </script>
+
+<style>
+    .option{
+        justify-content: flex-start !important;
+    }
+
+    .option p{
+        margin-bottom: 0px;
+    }
+    #submitButton{
+        display: none;
+    }
+
+    .end{
+        display: none;
+    }
+    </style>
 
 {% endblock %}
 
@@ -60,9 +71,10 @@
         <div class="col-12 col-lg-8 question_column p-0">
             <div class="question_content">
                 <div class="quiz_info">
-                    <h1 class="Quiz_title">What is the first prime number?</h1>
-                    <h5 class="Quiz_description">In this quiz, we are trying to find the first</h5>
-                    <h3 class="rules">Rules:</h3>
+                    <h1 class="Quiz_title">{{ quiz.title }}</h1>
+                    <u><h4 class="rules">Description:</h4></u>
+                    <h5 class="Quiz_description">{{ quiz.description }}</h5>
+                    <u><h4 class="rules">Rules:</h4></u>
                     <ul>
                         <li>Each question has 4 options</li>
                         <li>Each question has only one correct answer</li>
@@ -72,34 +84,42 @@
                     </div>
                 </div>
                 <div class="Quiz_Start">
-                    <h2 class="Quiz_title">Number Theory Hard Questions</h2>
+                    <h2 class="Quiz_title">{{ quiz.title }}</h2>
                     <section>
-                        <h3 class="que_text">What is 2 + 2?</h3>
+                        <h3 class="que_text"></h3>
+
                         <div class="option_list">
-
-                            <div class="option" onclick="optionSelected(this)">
-                                <span>first option</span>
+                            <div class="option" id="one"  onclick="optionSelected(this)">
+                                <label class="labelFormat">A-</label>
+                                <p></p>
                             </div>
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <span>second optionsecond optionsecond optionsecond optionsecond optionsecond
-                                    optionsecond optionsecond optionsecond optionsecond option</span>
+                            <div class="option" id="two"  onclick="optionSelected(this)">
+                                <label class="labelFormat">B-</label>
+                                <p></p>
                             </div>
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <span>third option</span>
+                            <div class="option" id="three"  onclick="optionSelected(this)">
+                                <label class="labelFormat">C-</label>
+                                <p></p>
                             </div>
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <span>fourth option</span>
+                            <div class="option" id="four"  onclick="optionSelected(this)">
+                                <label class="labelFormat">D-</label>
+                                <p></p>
                             </div>
                         </div>
+
                         <div class="controls">
-                            <button>Previous</button>
-                            <p class="numberQuestion">Question 1 of 10</p>
-                            <button>Next</button>
+                            <button id="previousButton">Previous</button>
+                            <p class="numberQuestion"></p>
+                            <button id="next">Next</button>
+                            <button id="submitButton">Submit</button>
                         </div>
                     </section>
+                </div>
+                <div class="end">
+                    <h1>Thank you very much </h1>
                 </div>
             </div>
         </div>

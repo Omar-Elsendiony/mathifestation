@@ -26,7 +26,7 @@ class Quiz_Questions(BaseModel, Base):
         question_text = Column(Text, nullable=False)
         correct_answer = Column(Text, nullable=False)
         quiz_questions_choices = relationship("Quiz_Questions_Choices", backref="quiz_questions_choices", cascade="all, delete")
-        
+
     else:
         quiz_id = ""
         question_text = ""
