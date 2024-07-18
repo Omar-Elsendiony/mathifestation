@@ -112,11 +112,11 @@ def login():
     if request.method == "POST":
         passwd = md5(request.form.get("password").encode()).hexdigest()
         print(passwd)
-        userRegistered = storage.get_attribute("User", ["email", "password"], [request.form.get("email"), passwd])[0]
+        userRegistered = storage.get_attribute("User", ["email", "password"], [request.form.get("email"), passwd])
         if (userRegistered == []):
             return render_template('login.html', error="User not found")
-        session["user_id"] = userRegistered.id
-        session["username"] = userRegistered.username
+        session["user_id"] = userRegistered[0].id
+        session["username"] = userRegistered[0].username
         
         # redirect to the main page
         return redirect("/")
