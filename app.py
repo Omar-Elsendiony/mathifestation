@@ -334,7 +334,7 @@ def paginate_questions(page):
 @app.route('/search_quiz_page/<int:page>', methods=['GET'])
 def paginate_tests(page):
     page = page
-    per_page = 1
+    per_page = 200
     res = storage.paginate("Quiz", page, per_page)
     print(res)
     # users = User.query.paginate(page,per_page,error_out=False)
