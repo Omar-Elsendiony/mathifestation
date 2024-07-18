@@ -36,7 +36,15 @@ class DBStorage:
         MATHS_MYSQL_PWD = getenv('MATHS_MYSQL_PWD')
         MATHS_MYSQL_HOST = getenv('MATHS_MYSQL_HOST')
         MATHS_MYSQL_DB = getenv('MATHS_MYSQL_DB')
-        MATHS_ENV = getenv('MATHS_ENV')
+        ############################################################################################################
+        MATHS_MYSQL_USER='maths_dev'
+        MATHS_MYSQL_PWD='maths_dev_pwd'
+        MATHS_MYSQL_HOST='localhost'
+        MATHS_MYSQL_DB='maths_dev_db'
+        MATHS_TYPE_STORAGE='db'
+        MATHS_API_HOST='localhost'
+        ############################################################################################################
+        MATHS_ENV = 'dev'
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(MATHS_MYSQL_USER,
                                              MATHS_MYSQL_PWD,
