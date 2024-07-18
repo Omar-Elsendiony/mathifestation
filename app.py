@@ -246,7 +246,8 @@ def answer_question(question_id):
 
 
 @app.route('/test', strict_slashes=False, methods=["GET", "POST"])
-def test():
+@app.route('/test/<int:id>', strict_slashes=False, methods=["GET", "POST"])
+def test(id=None):
     questions = {"1": "lol"}
     return render_template('test.html', user=session.get("username"), questions = questions)
 
@@ -258,11 +259,25 @@ def test():
 @app.route('/test_create', strict_slashes=False, methods=["GET", "POST"])
 def test_create():
     if (request.method == "POST"):
-        print(request.form.get("question"))
-        print(request.form.get("questions_options"))
-        print(request.form.get("question_title"))
-        print(request.form.get("question_description"))
-        return render_template('index.html', user = session.get("username"))
+        sentItems = request.get_json()
+        # print(sentItems)
+        quiz_title = sentItems.get("quiz_title")
+        quiz_description = sentItems.get("quiz_description")
+        questions = sentItems.get("questions")
+        questions_options = sentItems.get("questions_options")
+        correct_choice = sentItems.get("correct_choice")
+        
+        quiz = Quiz(title=quiz_title, description=quiz_description,user_id=session.get("user_id"))
+        storage.new(quiz)
+        for i in range(len(questions)):
+            question = Quiz_Questions(quiz_id=quiz.id,question_text=questions[i], correct_answer=correct_choice[i])
+            storage.new(question)
+            for j in range(len(questions_options[i])):
+                qqC = Quiz_Questions_Choices(question_id=question.id,answer_text=questions_options[i][j])
+                storage.new(qqC)
+        storage.save()
+        jsonify({"output_message":"You have submitted test successfully"})
+        return jsonify({"output_message":"You have submitted test successfully"})
     else:
         questions = {"1": "lol"}
         return render_template('test_create.html', user = session.get("username"), questions = questions)
@@ -271,20 +286,41 @@ def test_create():
 
 
 
-
-
-
-@app.route('/search_question_page', strict_slashes=False, methods=["GET", "POST"])
-def search_question_page():
-    return render_template('search_question.html', user = session.get("username"))
+# @app.route('/search_question_page', strict_slashes=False, methods=["GET", "POST"])
+# def search_question_page():
+#     return render_template('search_question.html', user = session.get("username"))
     
 
 
+@app.route('/search_question_page', methods=['GET'], defaults={"page": 1}) 
+@app.route('/search_question_page/<int:page>', methods=['GET'])
+def paginate(page):
+    page = page
+    per_page = 200
+    res = storage.paginate("Question", page, per_page)
+    print(res)
+    # users = User.query.paginate(page,per_page,error_out=False)
+    # print("Result......", users)
+    return render_template("search_question.html", questions = res, user = session.get("username"))
 
 
 
 
 
+@app.route('/search_quiz_page', methods=['GET'], defaults={"page": 1}) 
+@app.route('/search_quiz_page/<int:page>', methods=['GET'])
+def paginate(page):
+    page = page
+    per_page = 200
+    res = storage.paginate("Quiz", page, per_page)
+    print(res)
+    # users = User.query.paginate(page,per_page,error_out=False)
+    # print("Result......", users)
+    return render_template("search_test.html", quizzes = res, user = session.get("username"))
+
+
+
+""" Calling the main function """
 
 if __name__ == "__main__":
     """ Main Function """

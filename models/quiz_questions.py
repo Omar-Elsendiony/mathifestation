@@ -24,7 +24,7 @@ class Quiz_Questions(BaseModel, Base):
         __tablename__ = 'quizzes_questions'
         quiz_id = Column(String(60), ForeignKey('quizzes.id'), nullable=False)
         question_text = Column(Text, nullable=False)
-        
+        correct_answer = Column(Text, nullable=False)
         quiz_questions_choices = relationship("Quiz_Questions_Choices", backref="quiz_questions_choices", cascade="all, delete")
         
     else:

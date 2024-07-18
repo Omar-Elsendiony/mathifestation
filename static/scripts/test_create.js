@@ -1,23 +1,43 @@
 
 var selectedItem = null;
-const questions = new Array();
-const questions_options = new Array();
-const correct_choice = new Array();
+const questions = new Array(0);
+const questions_options = new Array(0);
+const correct_choice = new Array(0);
 var quiz_title;
 var quiz_description;
 var question_index = 0
 var questions_total = 1
+var cross = [true,true,true,true] // it is cross by default
+var selected_correct = -1
+node_selected = null
 
 
+var enumerate = {"one": 1, "two": 2, "three": 3, "four": 4};
 
 function optionSelected(element) {
-    if (selectedItem != null) {
-        selectedItem.style.borderColor = "aliceblue";
-        selectedItem.style.backgroundColor = "white";
+    index = enumerate[element.parentNode.id] - 1
+    cross[index] = !cross[index];
+    if (!cross[index]){
+        if (node_selected != null) {
+            // correct = options[i].value;
+            node_selected.style.backgroundColor = "#FF7F7F";
+            node_selected.style.borderColor = "red";
+            node_selected.innerHTML = "&#x274c"
+            cross[enumerate[node_selected.parentNode.id] - 1] = true
+        }
+
+        element.style.backgroundColor = "green";
+        element.style.borderColor = "green";
+        element.innerHTML = "&#x2705"
+        node_selected = element
+        selected_correct = enumerate[element.parentNode.id]
     }
-    element.style.backgroundColor = "lightgreen";
-    element.style.borderColor = "green";
-    selectedItem = element;
+    else{
+        node_selected = null
+        element.style.backgroundColor = "#FF7F7F";
+        element.style.borderColor = "red";
+        element.innerHTML = "&#x274c"
+    }
 }
 
 
@@ -51,7 +71,7 @@ function updateQuestion(status) {
     if (status == "add") {
         question_index += 1;
         if (question_index == questions_options.length) {
-            document.getElementById('numberQuestion').innerHTML = "Question " + (question_index + 1) + " of " + (questions_options.length + 1);
+            document.getElementById('numberQuestion').innerHTML = "Question " + (question_index + 1) + " of " + (questions_options.length);
         }else{
             document.getElementById('numberQuestion').innerHTML = "Question " + (question_index + 1) + " of " + (questions_options.length);        
         }
@@ -73,14 +93,19 @@ document.getElementById('add').addEventListener('click',
             return;
         }
 
-        var correct = null;
-        var options = document.querySelectorAll('.option');
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].parentNode.style.backgroundColor == "lightgreen") {
-                correct = options[i].value;
-            }
+        // var correct = null;
+        // var options = document.querySelectorAll('.option');
+        // for (let i = 0; i < options.length; i++) {
+        //     if (options[i].parentNode.style.backgroundColor == "lightgreen") {
+        //         correct = options[i].value;
+        //     }
+        // }
+        if (node_selected == null){
+            alert("Please select the correct answer")
+            return;
         }
-
+        correct = node_selected.nextElementSibling.value
+        console.log(node_selected.nextElementSibling)
         inputs = document.querySelectorAll('.option input')
 
 
@@ -97,12 +122,16 @@ document.getElementById('add').addEventListener('click',
             inputs_values.push(inputs[i].value)
         }
 
+        questions[question_index] = question
+        questions_options [question_index] = (inputs_values)
+        correct_choice[question_index] = (correct)
+
         questions.push(question)
         questions_options.push(inputs_values)
         correct_choice.push(correct)
 
-        console.log(questions_options)
-        console.log(questions)
+        // console.log(questions_options)
+        // console.log(questions)
 
         updateQuestion("add")
 
@@ -111,35 +140,45 @@ document.getElementById('add').addEventListener('click',
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].value = ""
         }
+
+        selected_correct = -1
+        node_selected = null
+
+        labels = document.getElementsByClassName('labelFormat')
+        for (let i = 0; i < labels.length; i++) {
+            labels[i].innerHTML =  "&#x274c"
+            labels[i].style.backgroundColor = "#FF7F7F";
+        }
+
+        
+        for (let i = 0; i < cross.length; i++) {
+            cross[i] = true
+        }
 });
 
 
 document.getElementById('next').addEventListener('click',
     function(event) {
-
-
         var question = document.querySelector('.que_text').value;
-        console.log(question)
         if (question == ""){
             alert("Please fill the question")
             return;
         }
 
         for (let i = 0; i < inputs.length; i++) {
-            console.log(inputs[i].value)
             if (inputs[i].value == "") {
                 alert("Please fill all the options")
                 return;
             }
         }
 
-        var correct = null;
-        var options = document.querySelectorAll('.option');
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].parentNode.style.backgroundColor == "lightgreen") {
-                correct = options[i].value;
-            }
+        if (node_selected == null){
+            alert("Please select the correct answer")
+            return;
         }
+        
+        correct = node_selected.nextElementSibling.value
+        correct_choice[question_index] = correct
 
         let inputs_values = new Array();
         for (let i = 0; i < inputs.length; i++) {
@@ -147,7 +186,7 @@ document.getElementById('next').addEventListener('click',
         }
         questions_options[question_index] = inputs_values
 
-
+        // the next question
         updateQuestion("add")
 
         if (question_index == questions_options.length - 1) {
@@ -156,20 +195,33 @@ document.getElementById('next').addEventListener('click',
         }
 
         document.querySelector('.que_text').value = questions[question_index]
+
+        // populating the labels with cross
+        labels = document.getElementsByClassName('labelFormat')
+        for (let i = 0; i < labels.length; i++) {
+            labels[i].innerHTML =  "&#x274c"
+            labels[i].style.backgroundColor = "#FF7F7F";
+        }
+
         inputs = document.querySelectorAll('.option input')
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].value = questions_options[question_index][i]
-        }
-
-        // correct = correct_choice[question_index];
-
-        var options = document.querySelectorAll('.option');
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].parentNode.style.backgroundColor == "lightgreen") {
-                correct = options[i].value;
+            if (inputs[i].value == correct_choice[question_index]) {
+                inputs[i].previousElementSibling.innerHTML = "&#x2705"
+                inputs[i].previousElementSibling.style.backgroundColor = "green";
+                inputs[i].previousElementSibling.style.borderColor = "green";
+                node_selected = inputs[i].previousElementSibling
             }
         }
+
+        // node_selected = null
+        // selected_correct = -1
+
+        for (let i = 0; i < cross.length; i++) {
+            cross[i] = true
+        }
         
+        console.log(correct_choice)
 });
 
 
@@ -184,7 +236,6 @@ document.getElementById('previousButton').addEventListener('click',
         }
 
         var question = document.querySelector('.que_text').value;
-        console.log(question)
         if (question == ""){
             alert("Please fill the question")
             return;
@@ -197,15 +248,27 @@ document.getElementById('previousButton').addEventListener('click',
                 return;
             }
         }
+
         questions[question_index] = document.querySelector('.que_text').value
         inputs = document.querySelectorAll('.option input')
-        console.log(inputs)
         inputs_values = new Array();
 
         for (let i = 0; i < inputs.length; i++) {
             inputs_values.push(inputs[i].value)
         }
+
         questions_options[question_index] = inputs_values
+
+
+        if (node_selected == null){
+            alert("Please select the correct answer")
+            return;
+        }
+
+        correct = node_selected.nextElementSibling.value
+        correct_choice[question_index] = correct
+
+
         /////////// start changing to the virtual previous page /////////////
         document.getElementById('add').style.display = "none";
         document.getElementById('next').style.display = "block";
@@ -214,16 +277,22 @@ document.getElementById('previousButton').addEventListener('click',
 
         document.querySelector('.que_text').value = questions[question_index]
         inputs = document.querySelectorAll('.option input')
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].value = questions_options[question_index][i]
+
+        // populating the labels with cross
+        labels = document.getElementsByClassName('labelFormat')
+        for (let i = 0; i < labels.length; i++) {
+            labels[i].innerHTML =  "&#x274c"
+            labels[i].style.backgroundColor = "#FF7F7F";
         }
 
-        // correct = correct_choice[question_index];
 
-        var options = document.querySelectorAll('.option');
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].parentNode.style.backgroundColor == "lightgreen") {
-                correct = options[i].value;
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].value = questions_options[question_index][i]
+            if (inputs[i].value == correct_choice[question_index]) {
+                inputs[i].previousElementSibling.innerHTML = "&#x2705"
+                inputs[i].previousElementSibling.style.backgroundColor = "green";
+                inputs[i].previousElementSibling.style.borderColor = "green";
+                node_selected = inputs[i].previousElementSibling
             }
         }
 
@@ -233,17 +302,17 @@ document.getElementById('previousButton').addEventListener('click',
 function submitContent() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', 'http://127.0.0.1:5000');
+    // headers.append('Access-Control-Allow-Origin', 'http://127.0.0.1:5000');
     headers.append('Access-Control-Allow-Credentials', 'true');
 
-    fetch("/invList", {
+    fetch("/test_create", {
             method: "POST",
             body: JSON.stringify({
-                question_title: quiz_title,
-                question_description: quiz_description,
-                questions: questions,
-                questions_options: questions_options,
-                correct_choice: correct_choice
+                "quiz_title": quiz_title,
+                "quiz_description": quiz_description,
+                "questions": questions,
+                "questions_options": questions_options,
+                "correct_choice": correct_choice
             }),
             headers: headers
         })
@@ -253,32 +322,41 @@ function submitContent() {
 
 
 
-document.getElementById('submitButton').addEventListener('click',
+document.getElementById('submit').addEventListener('click',
     function(event) {
 
         var question = document.querySelector('.que_text').value;
-        console.log(question)
         if (question == ""){
             alert("Please fill the question")
             return;
         }
-
+        
+        var inputs = document.querySelectorAll('.option input')
         for (let i = 0; i < inputs.length; i++) {
-            // console.log(inputs[i].value)
             if (inputs[i].value == "") {
                 alert("Please fill all the options")
                 return;
             }
         }
-
         questions[question_index] = document.querySelector('.que_text').value
         inputs = document.querySelectorAll('.option input')
         inputs_values = new Array();
-
+        
         for (let i = 0; i < inputs.length; i++) {
             inputs_values.push(inputs[i].value)
         }
+
+
         questions_options[question_index] = inputs_values
+
+        if (node_selected == null){
+            alert("Please select the correct answer")
+            return;
+        }
+
+        correct = node_selected.nextElementSibling.value
+        correct_choice[question_index] = correct
+
         /////////// start submitting the content of the question, options and title /////////////
         submitContent()
 });

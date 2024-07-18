@@ -24,12 +24,12 @@ class Quiz_Questions_Choices(BaseModel, Base):
         __tablename__ = 'quizzes_questions_choices'
         question_id = Column(String(60), ForeignKey('quizzes_questions.id'), nullable=False)
         answer_text = Column(Text, nullable=False)
-        is_correct = Column(Integer, nullable=False)
+        # is_correct = Column(Integer, nullable=False)
         
     else:
         question_id = ""
         answer_text = ""
-        is_correct = ""
+        # is_correct = ""
 
     def __init__(self, *args, **kwargs):
         """initializes question"""

@@ -105,9 +105,13 @@
         height: 50px;
     }
 
-
-
+    .contest_content{
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
+
+
 
 <script>
     {% if error != None %}
@@ -123,7 +127,22 @@
             window.location.href = "/ask_question"
         {% endif %}
     }
+    function answer_question(){
+        window.location.href = "/search_question"
+    }
 
+    function test_yourself(){
+        window.location.href = "/search_quiz_page"
+    }
+
+    function create_test(){
+        {% if user==None %}
+            alert("You need to login to create a test");
+        {% else %}
+            console.log("{{user}}")
+            window.location.href = "/test_create"
+        {% endif %}
+    }
 </script>
 
 {% endblock %}
@@ -160,7 +179,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Answer Questions</h5>
                     <p class="card-text">Answer the questions of other fellow Maths Geeks</p>
-                    <a href="#" class="btn btn-primary">Answer</a>
+                    <a onclick="answer_question()" class="btn btn-primary">Answer</a>
                 </div>
             </div>
         </div>
@@ -171,8 +190,11 @@
                 <img src="{{ url_for('static', filename='images/card_3.jpg')}}" class="card-img-top" alt="Card Image 2">
                 <div class="card-body">
                     <h5 class="card-title">Contests</h5>
-                    <p class="card-text">Enroll into contests and quizzes to challenge yourself (Soon).</p>
-                    <a href="#" class="btn btn-primary">Test yourself</a>
+                    <p class="card-text">Create quizzes and Enroll in others to challenge yourself.</p>
+                    <div class="contest_content">
+                        <a onclick="create_test()" class="btn btn-primary">Create Test</a>
+                        <a onclick="test_yourself()" class="btn btn-primary">Test yourself</a>
+                    </div>
                 </div>
             </div>
         </div>

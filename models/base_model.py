@@ -15,6 +15,8 @@ time = "%Y-%m-%dT%H:%M:%S.%f"
 
 if models.storage_t == "db":
     Base = declarative_base()
+    # Base.query = models.storage.query_property()
+    # Base.query = models.storage_t
 else:
     Base = object
 

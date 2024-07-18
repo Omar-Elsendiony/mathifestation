@@ -148,7 +148,14 @@ class DBStorage:
         result = result.all()
         return result
                 
-                
+    def paginate(self, cls, page, per_page):
+        theClass = classes[cls]
+        # result = self.__session.query(theClass).paginate(page,per_page,error_out=False)
+        result = self.__session.query(theClass).limit(per_page).offset((page - 1) * per_page)
+        print(result)
+        result = result.all()
+        return result
+    
 # db = DBStorage()
 # db.reload()
 # db.get_attribute("Question", ["id", "user_id"], ["5bc150de-77ba-4a19-87ee-8b47ed720862", "d08497bc-0f45-4eb6-aa5b-524155a0e2ee"])

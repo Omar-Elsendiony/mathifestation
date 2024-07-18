@@ -13,7 +13,28 @@
     console.log("{{questions['1']}}")
 </script>
 
+<style>
+.option label{
+    cursor: pointer;
+    display: inline-block;
+    width:35px;
+    height:35px;
+    text-align: center;
+    margin-right: 5px;
+    padding-top:5px;
+}
 
+.labelFormat{
+    color: red;
+    background-color: #FF7F7F;
+    cursor: pointer;
+}
+
+.success_column{
+    display: none;
+}
+
+</style>
 
 {% endblock %}
 
@@ -56,23 +77,23 @@
 
                         <div class="option_list">
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <label>A-</label>
+                            <div class="option" id="one">
+                                <label class="labelFormat"  onclick="optionSelected(this)">&#x274c</label>
                                 <input type="text" placeholder="Option 1">
                             </div>
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <label>B-</label>
+                            <div class="option" id="two">
+                                <label class="labelFormat"  onclick="optionSelected(this)">&#x274c</label>
                                 <input type="text" placeholder="Option 2">
                             </div>
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <label>C-</label>
+                            <div class="option" id="three">
+                                <label class="labelFormat"  onclick="optionSelected(this)">&#x274c</label>
                                 <input type="text" placeholder="Option 3">
                             </div>
 
-                            <div class="option" onclick="optionSelected(this)">
-                                <label>D-</label>
+                            <div class="option" id="four">
+                                <label class="labelFormat"  onclick="optionSelected(this)" >&#x274c</label>
                                 <input type="text" placeholder="Option 4">
                             </div>
                         </div>
@@ -88,7 +109,11 @@
                     </section>
                 </div>
             </div>
+            <div class="success_column">
+                <h1>You have successfully submitted the quiz</h1>
+            </div>
         </div>
+
     </div>
 </div>
 {% endblock %}
