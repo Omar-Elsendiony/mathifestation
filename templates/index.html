@@ -2,6 +2,7 @@
 
 {% block header_block %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/media.css')}}">
 
 <style>
     .introduction_row {
@@ -33,6 +34,10 @@
             flex-direction: column-reverse;
             width: 100vw;
         }
+
+        .container_add_on {
+            height: 60vh;
+        }
     }
 </style>
 
@@ -46,8 +51,15 @@
 <!-- End Scripts  -->
 
 <style>
+
+    @media only screen and (min-width: 0px) and (max-width: 800px) {
+        .container_add_on {
+            height: 60vh !important;
+        }
+    }
+
     .row_add_on {
-        margin: 7% 0%;
+        margin-top: 7%;
         /* height:20%   */
     }
 
@@ -61,7 +73,7 @@
     .container_add_on {
         font-family: 'normalFont', sans-serif;
         background-color: #0B022D;
-        height: 115vh;
+        height: 110vh;
     }
 
     .logo_container {
@@ -108,6 +120,16 @@
     .contest_content{
         display: flex;
         justify-content: space-between;
+    }
+
+    .last_row{
+        margin: 3% 0%;
+        background-color: white;
+        height: 20vh;
+    }
+
+    .media_follow{
+        padding-left:15px;
     }
 </style>
 
@@ -218,13 +240,38 @@
                 </div> -->
     </div>
 
-    <div class="row row_add_on">
+    <div class="row">
         <div class="col-2" id="animateMe">
             <img src="{{ url_for('static', filename='images/logo_rubik_less.svg')}}" class="objectFloating">
         </div>
     </div>
 </div>
 
+<div class="container-fluid ">
+
+<div class="row last_row">
+    <div class="col-8" >
+        <h4 style="text-align: center; margin-bottom:10px;"> I am <strong>Omar Elsendiony</strong>, a software engineer with high expertise in AI, Digital Verification, Digital Design and Automation testing.</h4>
+        <h5 style="text-align:center"> I created this platform to
+            help students and math geeks to solve math problems and enroll in contests. I hope you enjoy the
+            platform.</h5>
+    </div>
+    <div class="col-4 media_follow" >
+        <h4 style="color:#f318a2"> Follow me:</h4>
+        <div>
+            <div class = "container-icons">
+                <a class = "icons"><img src="{{ url_for('static', filename='images/github.png')}}" style="width:inherit" class="icon-image" href="https://github.com/Omar-Elsendiony"></a>
+                <a class = "hoverableIcon icons" style="background-color: black;" href="https://github.com/Omar-Elsendiony"><img src="{{ url_for('static', filename='images/github.png')}}"  class="icon-image icon-image-2" style="filter: brightness(0) invert(1) ;background-color: transparent;"></a>
+            </div>
+
+            <div class = "container-icons">
+                <a class = "icons"  href="https://www.linkedin.com/in/omarelsendiony/"><img src="images/linkedin.png" style="width:inherit" class="icon-image"></a>
+                <a class = "hoverableIcon icons" style="background-color: #0082CB;" href="https://www.linkedin.com/in/omarelsendiony/"><img src="images/linkedin.png" class="icon-image icon-image-2" style="filter: brightness(0) invert(1) ;background-color: transparent;"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 
 
