@@ -54,7 +54,13 @@
 
     @media only screen and (min-width: 0px) and (max-width: 800px) {
         .container_add_on {
-            height: 60vh !important;
+            height: 70vh !important;
+        }
+    }
+
+    @media only screen and (min-width: 800px) and (max-width: 1500px) {
+        .container_add_on {
+            height: 70vh !important;
         }
     }
 
@@ -97,6 +103,10 @@
         }
 
         .goal h1 {
+            font-size: 1.3rem;
+        }
+
+        .my_bio{
             font-size: 1rem;
         }
     }
@@ -251,8 +261,8 @@
 
 <div class="row last_row">
     <div class="col-8" >
-        <h4 style="text-align: center; margin-bottom:10px;"> I am <strong>Omar Elsendiony</strong>, a software engineer with high expertise in AI, Digital Verification, Digital Design and Automation testing.</h4>
-        <h5 style="text-align:center"> I created this platform to
+        <h4 class="my_bio" style="text-align: center; margin-bottom:10px;"> I am <strong>Omar Elsendiony</strong>, a software engineer with high expertise in AI, Digital Verification, Digital Design and Automation testing.</h4>
+        <h5 class="my_bio" style="text-align:center"> I created this platform to
             help students and math geeks to solve math problems and enroll in contests. I hope you enjoy the
             platform.</h5>
     </div>
@@ -265,8 +275,8 @@
             </div>
 
             <div class = "container-icons">
-                <a class = "icons"  href="https://www.linkedin.com/in/omarelsendiony/"><img src="images/linkedin.png" style="width:inherit" class="icon-image"></a>
-                <a class = "hoverableIcon icons" style="background-color: #0082CB;" href="https://www.linkedin.com/in/omarelsendiony/"><img src="images/linkedin.png" class="icon-image icon-image-2" style="filter: brightness(0) invert(1) ;background-color: transparent;"></a>
+                <a class = "icons"  href="https://www.linkedin.com/in/omarelsendiony/"><img src="{{ url_for('static', filename='images/linkedin.png')}}" style="width:inherit" class="icon-image"></a>
+                <a class = "hoverableIcon icons" style="background-color: #0082CB;" href="https://www.linkedin.com/in/omarelsendiony/"><img src="{{ url_for('static', filename='images/linkedin.png')}}" class="icon-image icon-image-2" style="filter: brightness(0) invert(1) ;background-color: transparent;"></a>
             </div>
         </div>
     </div>

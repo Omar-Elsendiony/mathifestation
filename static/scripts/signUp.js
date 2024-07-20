@@ -32,7 +32,7 @@ setTimeout(() => {
         cond1 = $("#username").val().length < 1 ? alert("Username cannot be empty") : null
         cond2 = $("#username").val().length > 8 ? alert("Username length must be between 1 and 8") : null
         
-        if (cond1 || cond2)
+        if (!cond1 || !cond2)
         {
             return false;
         }

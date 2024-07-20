@@ -38,7 +38,7 @@ setTimeout(() => {
         }
         else{
             // console.log("else")
-            if (x >= 0.4 * screen.width ) {
+            if (x >= 0.6 * screen.width ) {
                 direction = "left";
                 // rightToLeft();
             }
