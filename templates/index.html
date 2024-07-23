@@ -56,11 +56,18 @@
         .container_add_on {
             height: 70vh !important;
         }
+        .goal h1 {
+            font-size: 1.3rem;
+        }
+
     }
 
     @media only screen and (min-width: 800px) and (max-width: 1500px) {
         .container_add_on {
             height: 70vh !important;
+        }
+        .goal h1 {
+            font-size: 1.3rem;
         }
     }
 
@@ -69,6 +76,9 @@
         /* height:20%   */
     }
 
+    .my_bio{
+        font-size: 1rem;
+    }
 
     .introduction_text {
         padding: 5%;
@@ -102,12 +112,8 @@
             width: 100vw;
         }
 
-        .goal h1 {
-            font-size: 1.3rem;
-        }
-
-        .my_bio{
-            font-size: 1rem;
+        .bio-container{
+            height: 30vh;
         }
     }
 
@@ -141,6 +147,31 @@
     .media_follow{
         padding-left:15px;
     }
+
+    .animatedRow{
+        margin-top: 5%;
+    }
+    .card{
+        position: relative;
+    }
+
+    .card-text{
+        margin-bottom: 20%;
+    }
+    .test_button{
+        margin-left: auto;
+    }
+
+    .no-increase{
+        width: 460px;
+    }
+
+    .encompassing-media{
+        width: max-content;
+    }
+
+
+
 </style>
 
 
@@ -206,7 +237,7 @@
         </div>
         <!-- Card 2 -->
         <div class="col-md-4  d-flex align-items-stretch">
-            <div class="card ">
+            <div class="card">
                 <img src="{{ url_for('static', filename='images/card_2.jpg')}}" class="card-img-top" alt="Card Image 2">
                 <div class="card-body">
                     <h5 class="card-title">Answer Questions</h5>
@@ -225,7 +256,7 @@
                     <p class="card-text">Create quizzes and Enroll in others to challenge yourself.</p>
                     <div class="contest_content">
                         <a onclick="create_test()" class="btn btn-primary">Create Test</a>
-                        <a onclick="test_yourself()" class="btn btn-primary">Test yourself</a>
+                        <a onclick="test_yourself()" class="btn btn-primary test_button">Test yourself</a>
                     </div>
                 </div>
             </div>
@@ -235,8 +266,8 @@
 
 <div class="container_add_on container-fluid ">
     <div class="row row_add_on d-flex justify-content-center">
-        <div class="col- logo_container">
-            <img src="{{ url_for('static', filename='images/Picture5.svg')}}">
+        <div class="col-5 logo_container">
+            <img class="no-increase" src="{{ url_for('static', filename='images/Picture5.svg')}}">
         </div>
     </div>
     <div class="row row_add_on">
@@ -250,14 +281,14 @@
                 </div> -->
     </div>
 
-    <div class="row">
+    <div class="row animatedRow">
         <div class="col-2" id="animateMe">
             <img src="{{ url_for('static', filename='images/logo_rubik_less.svg')}}" class="objectFloating">
         </div>
     </div>
 </div>
 
-<div class="container-fluid ">
+<div class="container-fluid bio-container">
 
 <div class="row last_row">
     <div class="col-8" >
@@ -268,7 +299,7 @@
     </div>
     <div class="col-4 media_follow" >
         <h4 style="color:#f318a2"> Follow me:</h4>
-        <div>
+        <div class="encompassing-media">
             <div class = "container-icons">
                 <a class = "icons"><img src="{{ url_for('static', filename='images/github.png')}}" style="width:inherit" class="icon-image" href="https://github.com/Omar-Elsendiony"></a>
                 <a class = "hoverableIcon icons" style="background-color: black;" href="https://github.com/Omar-Elsendiony"><img src="{{ url_for('static', filename='images/github.png')}}"  class="icon-image icon-image-2" style="filter: brightness(0) invert(1) ;background-color: transparent;"></a>

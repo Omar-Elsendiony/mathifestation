@@ -26,6 +26,7 @@ setTimeout(() => {
     var start = true
     var direction = "right";
     function animateElement() {
+        return
         var element = document.getElementsByClassName('objectFloating')[0];
         var position = element.getBoundingClientRect();
         var x = position.left;
@@ -38,7 +39,7 @@ setTimeout(() => {
         }
         else{
             // console.log("else")
-            if (x >= 0.6 * screen.width ) {
+            if (x >= 0.2 * screen.width ) {
                 direction = "left";
                 // rightToLeft();
             }

@@ -82,18 +82,15 @@ def index():
 @app.route('/signUp', strict_slashes=False, methods=["POST", "GET"])
 def signUp():
     if request.method == "POST":
-        ####### record the user name  #####
-        # print(request.form.get("name"))
-        # print(request.form.get("username"))
-        # print(request.form.get("email"))
-        # print(request.form.get("firstname"))
-        # print(request.form.get("lastname"))
-        print(request.form.get("password"))
-        ####################################
         res = storage.get_attribute("User", ["username"], [request.form.get("username")])
         print(res)
         if (len(res) > 0):
-            return render_template('signUp.html', error="User already exists")
+            return render_template('signUp.html', error="User name already exists",  user=session.get("username"))
+        
+        res = storage.get_attribute("User", ["email"], [request.form.get("email")])
+        print(res)
+        if (len(res) > 0):
+            return render_template('signUp.html', error="This Email is already signed up",  user=session.get("username"))
         
         newUser = User(username=request.form.get("username"), email=request.form.get("email"), password=request.form.get("password") , first_name=request.form.get("firstname"), last_name=request.form.get("lastname"))
         print(newUser.__dict__)

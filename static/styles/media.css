@@ -22,72 +22,36 @@
     z-index:2;
 }
 
-.hoverableIcon .icon-image{
-    /* height: inherit; */
-}
 
-/* .container-icons:hover .hoverableIcon .icon-image{
-    height: auto;
-} */
 
 .container-icons:hover .hoverableIcon{
-    /* position:absolute;
-    height: 0%; */
     animation-name: example;
     animation-duration: 1s;
     animation-fill-mode: both;
 }
 
-/* div:hover .hoverableIcon {
-    animation-name: example;
-    animation-duration: 4s;
-} */
-  
+
 @keyframes example {
     from  {height: 0%;}
     to {height:100%;}
 }
 
 
-i{
-    width: max-content;
-    height: 64px;
-    background-image: url("facebook.png");
-    background-repeat: no-repeat;
-}
-
-a{
+.icons{
     display: inline-block;
     height: inherit ;
     overflow: hidden;
-
 }
-
-
-a:hover{
-    /* background-color: #022EA9; */
-    
-}
-
-/* .icon-image:hover{
-    background-color: #022EA9;
-    filter: brightness(0) invert(1)
-} */
-
-
 
 
 .icon-image{
     /* position: relative;
     top:8px; */
     margin: auto;
-    /* width: auto;
-    height: min-content ; */
     width: 64px;
     height: 64px;
     overflow: hidden;
     transform: scale(0.5);
-    /* background-image: url("facebook.png");  */
     filter:   grayscale(100%);
     transition: background-color 250ms; 
 }
@@ -96,6 +60,3 @@ a:hover{
 .icon-image-2{
     filter: grayscale(0%)
 }
-
-
-

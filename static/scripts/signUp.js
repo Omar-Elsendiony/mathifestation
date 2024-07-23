@@ -31,9 +31,19 @@ setTimeout(() => {
     $("#submit").click(function() {
         cond1 = $("#username").val().length < 1 ? alert("Username cannot be empty") : null
         cond2 = $("#username").val().length > 8 ? alert("Username length must be between 1 and 8") : null
-        
-        if (!cond1 || !cond2)
+        // console.log(!cond1, cond2)
+
+        if (cond1 || cond2)
         {
+            return false;
+        }
+
+        pass = $("#password").val()
+        retypedPass = $("#Re-type").val()
+
+        if (pass != retypedPass)
+        {
+            alert("Passwords do not match")
             return false;
         }
 
