@@ -83,6 +83,12 @@
             text-decoration: none;
             color: black;
         }
+
+        #headline {
+            margin-top: 10px;
+            color: #f318a2;
+        }
+
     </style>
 
     
@@ -91,8 +97,11 @@
 
 {% block body_block %}
     <div class="container question_metadata">
+        <h2 id="headline">Search Questions</h2>
         <div class="row d-flex align-items-center" style="width: 100%;">
-            <input type="text" id="searchText" placeholder="Search Questions...">
+            <form action="/search_question_page">
+                <input type="text" id="searchText" name="searchText" placeholder="Search Questions...">
+            </form>
         </div>
     </div>
 

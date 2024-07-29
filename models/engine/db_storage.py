@@ -160,7 +160,7 @@ class DBStorage:
         theClass = classes[cls]
         # result = self.__session.query(theClass).paginate(page,per_page,error_out=False)
         result = self.__session.query(theClass).limit(per_page).offset((page - 1) * per_page)
-        print(result)
+        # print(result)
         result = result.all()
         return result
     

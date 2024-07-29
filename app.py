@@ -223,7 +223,6 @@ def answer_question(question_id):
         answerObj = Answer(body=answer_body, question_id=question_id, user_id=session.get("user_id"))
         storage.new(answerObj)
         storage.save()
-        
         return render_template('index.html', user=session.get("username"), error=None)
 
     else:
@@ -317,11 +316,13 @@ def test_create():
 def paginate_questions(page):
     page = page
     per_page = 200
-    res = storage.paginate("Question", page, per_page)
-    print(res)
-    # users = User.query.paginate(page,per_page,error_out=False)
-    # print("Result......", users)
-    return render_template("search_question.html", questions = res, user = session.get("username"))
+    searchText = request.values.get("searchText")
+    if (searchText is None):
+        availableQuestions = storage.paginate("Question", page, per_page)
+        return render_template("search_question.html", questions = availableQuestions, user = session.get("username"))
+    
+    availableQuestions = storage.search("Question", ["title"], [searchText])
+    return render_template("search_question.html", questions = availableQuestions, user = session.get("username"))
 
 
 
@@ -332,11 +333,14 @@ def paginate_questions(page):
 def paginate_tests(page):
     page = page
     per_page = 200
-    res = storage.paginate("Quiz", page, per_page)
-    print(res)
-    # users = User.query.paginate(page,per_page,error_out=False)
-    # print("Result......", users)
-    return render_template("search_test.html", quizzes = res, user = session.get("username"))
+    searchText = request.values.get("searchText")
+    print(searchText)
+    if (searchText is None):
+        availableQuizzes = storage.paginate("Quiz", page, per_page)
+        return render_template("search_test.html", quizzes = availableQuizzes, user = session.get("username"))
+    
+    availableQuizzes = storage.search("Quiz", ["title"], [searchText])
+    return render_template("search_test.html", quizzes = availableQuizzes, user = session.get("username"))
 
 
 

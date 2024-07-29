@@ -82,6 +82,16 @@
             text-decoration: none;
             color: black;
         }
+
+        #results{
+            color: #f318a2;
+        }
+
+        #headline {
+            margin-top: 10px;
+            color: #f318a2;
+        }
+        
     </style>
 
     
@@ -90,14 +100,17 @@
 
 {% block body_block %}
     <div class="container question_metadata">
+        <h2 id="headline">Search Quizzes</h2>
         <div class="row d-flex align-items-center" style="width: 100%;">
-            <input type="text" id="searchText" placeholder="Search quizzes...">
+            <form action="/search_quiz_page">
+                <input type="text" id="searchText" name="searchText" placeholder="Search quizzes...">
+            </form>
         </div>
     </div>
 
     <div class="container">
         <div>
-            <h3>Results</h3>
+            <h3 id="results">Results</h3>
         </div>
         {% if quizzes == [] %}
             <h2> No results found</h2>
