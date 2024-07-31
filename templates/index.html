@@ -121,6 +121,10 @@
             display: flex;
             flex-direction: column;
         }
+
+        .follow-me{
+            width:120px;
+        }
     }
 
     .goal {
@@ -319,7 +323,7 @@
             platform.</h5>
     </div>
     <div class="col-4 media_follow" >
-        <h4 style="color:#f318a2; width:120px;"> Follow me:</h4>
+        <h4 style="color:#f318a2; " class="follow-me"> Follow me:</h4>
         <div class="encompassing-media">
             <div class = "container-icons">
                 <a class = "icons"><img src="{{ url_for('static', filename='images/github.png')}}" style="width:inherit" class="icon-image" href="https://github.com/Omar-Elsendiony"></a>
