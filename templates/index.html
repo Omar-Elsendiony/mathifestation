@@ -115,7 +115,11 @@
         }
 
         .no-increase{
-            width: 380px;
+            width: 380px !important;
+        }
+        .encompassing-media{
+            display: flex;
+            flex-direction: column;
         }
     }
 
@@ -165,7 +169,7 @@
     }
 
     .no-increase{
-        width: 430px;
+        width: 400px;
     }
 
     .encompassing-media{
@@ -199,7 +203,6 @@
         {% if user==None %}
             alert("You need to login to ask a question");
         {% else %}
-            console.log("{{user}}")
             window.location.href = "/ask_question"
         {% endif %}
     }
@@ -215,7 +218,6 @@
         {% if user==None %}
             alert("You need to login to create a test");
         {% else %}
-            console.log("{{user}}")
             window.location.href = "/test_create"
         {% endif %}
     }
@@ -317,7 +319,7 @@
             platform.</h5>
     </div>
     <div class="col-4 media_follow" >
-        <h4 style="color:#f318a2"> Follow me:</h4>
+        <h4 style="color:#f318a2; width:120px;"> Follow me:</h4>
         <div class="encompassing-media">
             <div class = "container-icons">
                 <a class = "icons"><img src="{{ url_for('static', filename='images/github.png')}}" style="width:inherit" class="icon-image" href="https://github.com/Omar-Elsendiony"></a>
