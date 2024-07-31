@@ -111,7 +111,7 @@ def login():
         print(passwd)
         userRegistered = storage.get_attribute("User", ["email", "password"], [request.form.get("email"), passwd])
         if (userRegistered == []):
-            return render_template('login.html', error="User not found")
+            return render_template('login.html', error="User not found", user=session.get("username"))
         session["user_id"] = userRegistered[0].id
         session["username"] = userRegistered[0].username
         
